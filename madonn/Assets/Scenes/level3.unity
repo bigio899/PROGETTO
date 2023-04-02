@@ -543,7 +543,7 @@ Transform:
   - {fileID: 597978454}
   - {fileID: 369104171}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &69157575
 GameObject:
@@ -2120,8 +2120,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -43.027435, y: 27.245607}
-  m_SizeDelta: {x: 2147.959, y: 968.3677}
+  m_AnchoredPosition: {x: -43.027435, y: -7.85}
+  m_SizeDelta: {x: 2147.959, y: 1069.375}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &480708278
 MonoBehaviour:
@@ -9146,7 +9146,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -790.12274, y: -320.07236}
+  m_AnchoredPosition: {x: -730, y: -474}
   m_SizeDelta: {x: 453.5869, y: 81.8064}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1993453959
