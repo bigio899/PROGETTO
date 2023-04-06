@@ -1,12 +1,19 @@
 using UnityEngine;
 using UnityEngine.Advertisements;
-
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
+using UnityEditor.UI;
 public class IntersitialAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
 {
     [SerializeField] string _androidAdUnitId = "Interstitial_Android";
     [SerializeField] string _iOsAdUnitId = "Interstitial_iOS";
     string _adUnitId;
 
+    [SerializeField] Button button1;
+
+    private string stringActualScene;
+    private int numberActualScene;
     void Awake()
     {
         // Get the Ad Unit ID for the current platform:
@@ -51,5 +58,22 @@ public class IntersitialAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnity
 
     public void OnUnityAdsShowStart(string _adUnitId) { }
     public void OnUnityAdsShowClick(string _adUnitId) { }
-    public void OnUnityAdsShowComplete(string _adUnitId, UnityAdsShowCompletionState showCompletionState) { }
+    public void OnUnityAdsShowComplete(string _adUnitId, UnityAdsShowCompletionState showCompletionState) 
+    {
+        stringActualScene = SceneManager.GetActiveScene().name;
+        if(stringActualScene == "SampleScene")
+        {
+            numberActualScene = 0;
+        } 
+        else if(stringActualScene == "Level1")
+        {
+            numberActualScene = 1;
+        }
+        else if(stringActualScene =="Level2")
+        {
+            numberActualScene = 2;
+        }
+        
+        SceneManager.LoadScene(numberActualScene+DataPersistence.instanceDataPersistence.levelAvancement);
+    }
 }

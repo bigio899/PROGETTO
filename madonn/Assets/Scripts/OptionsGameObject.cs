@@ -37,8 +37,7 @@ public class OptionsGameObject : MonoBehaviour
         {
             loadingSubScene.gameObject.SetActive(true);
         }
-        theNPC.GetComponent<Animator>().Play("StandUP");
-        SceneManager.LoadScene(levelAvancement); //this line of code will open the scene of the level.
+        SceneManager.LoadScene(1); //this line of code will open the scene of the level.
     }
 
     //function that is performed when the player click the Resume button.

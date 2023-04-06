@@ -1646,71 +1646,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 514919862}
   m_CullTransparentMesh: 1
---- !u!1001 &524215602
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1459024854894175029, guid: 1b28490e6a4d0e84787e136e3e1471d5, type: 3}
-      propertyPath: m_Name
-      value: AdsManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 1459024854894175030, guid: 1b28490e6a4d0e84787e136e3e1471d5, type: 3}
-      propertyPath: rewardedAdsButton
-      value: 
-      objectReference: {fileID: 979119768}
-    - target: {fileID: 1459024854894175030, guid: 1b28490e6a4d0e84787e136e3e1471d5, type: 3}
-      propertyPath: interstitialAdsButton
-      value: 
-      objectReference: {fileID: 1231873830}
-    - target: {fileID: 1459024854894175031, guid: 1b28490e6a4d0e84787e136e3e1471d5, type: 3}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1459024854894175031, guid: 1b28490e6a4d0e84787e136e3e1471d5, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 807.902
-      objectReference: {fileID: 0}
-    - target: {fileID: 1459024854894175031, guid: 1b28490e6a4d0e84787e136e3e1471d5, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 406.71033
-      objectReference: {fileID: 0}
-    - target: {fileID: 1459024854894175031, guid: 1b28490e6a4d0e84787e136e3e1471d5, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -15.096281
-      objectReference: {fileID: 0}
-    - target: {fileID: 1459024854894175031, guid: 1b28490e6a4d0e84787e136e3e1471d5, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1459024854894175031, guid: 1b28490e6a4d0e84787e136e3e1471d5, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1459024854894175031, guid: 1b28490e6a4d0e84787e136e3e1471d5, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1459024854894175031, guid: 1b28490e6a4d0e84787e136e3e1471d5, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1459024854894175031, guid: 1b28490e6a4d0e84787e136e3e1471d5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1459024854894175031, guid: 1b28490e6a4d0e84787e136e3e1471d5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1459024854894175031, guid: 1b28490e6a4d0e84787e136e3e1471d5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 1b28490e6a4d0e84787e136e3e1471d5, type: 3}
 --- !u!1 &525082822
 GameObject:
   m_ObjectHideFlags: 0
@@ -3478,6 +3413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _androidAdUnitId: Interstitial_Android
   _iOsAdUnitId: Interstitial_iOS
+  button1: {fileID: 0}
 --- !u!1 &980003324
 GameObject:
   m_ObjectHideFlags: 0
@@ -3953,7 +3889,6 @@ GameObject:
   - component: {fileID: 1231873829}
   - component: {fileID: 1231873828}
   - component: {fileID: 1231873827}
-  - component: {fileID: 1231873830}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -4026,21 +3961,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1231873830}
-        m_TargetAssemblyTypeName: IntersitialAdsbutton, Assembly-CSharp
+      - m_Target: {fileID: 979119769}
+        m_TargetAssemblyTypeName: IntersitialAdsButton, Assembly-CSharp
         m_MethodName: ShowAd
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 979119766}
-        m_TargetAssemblyTypeName: OptionsGameObject, Assembly-CSharp
-        m_MethodName: ChangeSceneFromMenuToLevelOne
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4088,20 +4011,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1231873825}
   m_CullTransparentMesh: 1
---- !u!114 &1231873830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1231873825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e9c658a049600439ea327ddf1a214d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _androidAdUnitId: Interstitial_Android
-  _iOsAdUnitId: Interstitial_iOS
 --- !u!1 &1260075451
 GameObject:
   m_ObjectHideFlags: 0
@@ -7699,6 +7608,71 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2135290294}
   m_CullTransparentMesh: 1
+--- !u!1001 &2136802600
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7223769680529032280, guid: 24b0abaa8185a8049b5b80b9f4034ad1, type: 3}
+      propertyPath: m_Name
+      value: AdsManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223769680529032282, guid: 24b0abaa8185a8049b5b80b9f4034ad1, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223769680529032282, guid: 24b0abaa8185a8049b5b80b9f4034ad1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 807.902
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223769680529032282, guid: 24b0abaa8185a8049b5b80b9f4034ad1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 406.71033
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223769680529032282, guid: 24b0abaa8185a8049b5b80b9f4034ad1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -15.096281
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223769680529032282, guid: 24b0abaa8185a8049b5b80b9f4034ad1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223769680529032282, guid: 24b0abaa8185a8049b5b80b9f4034ad1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223769680529032282, guid: 24b0abaa8185a8049b5b80b9f4034ad1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223769680529032282, guid: 24b0abaa8185a8049b5b80b9f4034ad1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223769680529032282, guid: 24b0abaa8185a8049b5b80b9f4034ad1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223769680529032282, guid: 24b0abaa8185a8049b5b80b9f4034ad1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223769680529032282, guid: 24b0abaa8185a8049b5b80b9f4034ad1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223769680529032283, guid: 24b0abaa8185a8049b5b80b9f4034ad1, type: 3}
+      propertyPath: rewardedAdsButton
+      value: 
+      objectReference: {fileID: 979119768}
+    - target: {fileID: 7223769680529032283, guid: 24b0abaa8185a8049b5b80b9f4034ad1, type: 3}
+      propertyPath: interstitialAdsButton
+      value: 
+      objectReference: {fileID: 979119769}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 24b0abaa8185a8049b5b80b9f4034ad1, type: 3}
 --- !u!1 &2144259273
 GameObject:
   m_ObjectHideFlags: 0
