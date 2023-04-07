@@ -3,14 +3,12 @@ using UnityEngine.Advertisements;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
-using UnityEditor.UI;
 public class IntersitialAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
 {
     [SerializeField] string _androidAdUnitId = "Interstitial_Android";
     [SerializeField] string _iOsAdUnitId = "Interstitial_iOS";
     string _adUnitId;
-
-    [SerializeField] Button button1;
+    [SerializeField] private GameObject loadingSubScene;  //loading screen gameobject. 
 
     private string stringActualScene;
     private int numberActualScene;
@@ -65,15 +63,18 @@ public class IntersitialAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnity
         {
             numberActualScene = 0;
         } 
+
         else if(stringActualScene == "Level1")
         {
             numberActualScene = 1;
         }
+
         else if(stringActualScene =="Level2")
         {
             numberActualScene = 2;
         }
-        
+
+        loadingSubScene.gameObject.SetActive(true);
         SceneManager.LoadScene(numberActualScene+DataPersistence.instanceDataPersistence.levelAvancement);
     }
 }

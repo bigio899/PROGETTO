@@ -23,9 +23,7 @@ public class GameManager1 : MonoBehaviour
     [SerializeField] private GameObject ausiliarG03TimerStop; //gameobject used to verify that the player have ended the level and the timer must be stopped.
 
     //declaration variables.
-    private  int levelNumber = 0; //this variable is used to identify the level and load the scene of the relative level if the time ends. 
-    private bool isCoroutineEnded = false; //boolean that verify that the time of loading of the icon is ended.
-    private bool ausiliarVariable = false; //ausiliar boolean that is used in the "Update Method" for verify only one time a  if state(this code set active some gameobject).
+    private int levelNumber = 0; //this variable is used to identify the level and load the scene of the relative level if the time ends. 
     private bool isFailureCoroutineEnded = false; //boolean that verify that the timer is ended(zero value). 
 
     //declaration gameobjects's variables 
@@ -41,21 +39,17 @@ public class GameManager1 : MonoBehaviour
     //Chapters Introductions
     [SerializeField] private VideoPlayer introductionChapterVideosource; // Chapter 1-2-3 Introduction Video texted with sound.
     private bool ausiliarIntroductionChapters = false; //ausiliar variable used for the coroutine.
-
+    private bool ausiliarSecondFrameVideo = false; //ausiliar variable used for do the condition of the introduction form the second frame after the playing of the video.  
     // Start is called before the first frame update.
     void Start()
     {
         failureLevelAdviseUI.gameObject.SetActive(false);
-        //set the loading subscene to active
-        loadingSubScene.gameObject.SetActive(true);
-        //start the second of coroutine, where there's the loading subscene sected to active. 
-        StartCoroutine(LoadingCoroutine());
 
         nameOftheCurrentScene = SceneManager.GetActiveScene().name; //get the name of the current active scene.
         Debug.Log(nameOftheCurrentScene);
         if(nameOftheCurrentScene == nameFirstLevelScene) //if the scene is Level1
         {
-            valueTimeForCountdown = 599.00f; //set the start value of the timer to 5 minutes.
+            valueTimeForCountdown = 359.00f; //set the start value of the timer to 5 minutes.
             levelNumber = 1;
             DataPersistence.instanceDataPersistence.levelAvancement = 1; //add the persistence of the level avancemenent 1.
             DataPersistence.instanceDataPersistence.SaveLevelAvancementFunction(); //save this value in json.
@@ -79,21 +73,22 @@ public class GameManager1 : MonoBehaviour
     }
     private void Update()
     {
-
-        //condition that verify if the coroutine is ended.If the value is true,all the GameButtons of the menu will back active, and the loading sub-scene will disabilited.
-        if ((isCoroutineEnded == true) && (ausiliarVariable != true))
+        if(introductionChapterVideosource.isPlaying)
         {
-            loadingSubScene.gameObject.SetActive(false); //loading screen is disabled.
-            introductionChapterVideosource.gameObject.SetActive(true); //play the video of the introduction.
-            if (!introductionChapterVideosource.isPlaying) //if the video has finished the reproduction
-            {
-                StartCoroutine(IntroductionLevels());  //start a coroutine for reads better the text.
-            }
-            ausiliarVariable = true;  //value of this variable is setted to true for not check again the condition.
+            ausiliarSecondFrameVideo = true;
+        }
+        //condition that verify if the introduction's video is ended.If the value is true,all the GameButtons of the menu will back active, and the intro will disabilited.
+
+        if ((ausiliarSecondFrameVideo == true) && (!introductionChapterVideosource.isPlaying) && (ausiliarIntroductionChapters != true)) //if the video has finished the reproduction
+        {
+            Debug.Log("The video is ended successfully"); 
+            introductionChapterVideosource.gameObject.SetActive(false);
+            gameButtons.gameObject.SetActive(true);
+            ausiliarIntroductionChapters = true;
         }
 
-        //condition that verify that the loading sub-scene is completed.
-        if ((isCoroutineEnded == true) && (ausiliarIntroductionChapters == true)) //if the loading sub-scene is complete, this part of script make time(used for the timer) pass. 
+
+        if ((ausiliarSecondFrameVideo == true) && (!introductionChapterVideosource.isPlaying)) //if the loading sub-scene is complete, this part of script make time(used for the timer) pass. 
         {
             gameButtons.gameObject.SetActive(true);  //buttons of the scene are visible.
             countdownTextUI.gameObject.SetActive(true);   //the timer is actived.
@@ -117,12 +112,6 @@ public class GameManager1 : MonoBehaviour
         }
     }
 
-    //function that return 3 seconds of waiting for the coroutine.
-    private IEnumerator LoadingCoroutine()
-    {
-        yield return new WaitForSeconds(1.0f); // one second of waiting.
-        isCoroutineEnded = true;
-    }
 
     //this function is used for translate the value of the time(in deltatime format) in minutes and seconds.After that, the values of the minutes and the seconds will change in a string format(for be viewed in the display by a text(countdownTextUI)).
     private void DisplayTimeCountdownFunction(float currentTimeValueDisplay)
@@ -170,10 +159,5 @@ public class GameManager1 : MonoBehaviour
     {
         DataPersistence.instanceDataPersistence.SaveLevelAvancementFunction();
         SceneManager.LoadScene(0);
-    }
-    private IEnumerator IntroductionLevels()
-    {
-        yield return new WaitForSeconds(5.5f);
-        ausiliarIntroductionChapters = true;
     }
 }

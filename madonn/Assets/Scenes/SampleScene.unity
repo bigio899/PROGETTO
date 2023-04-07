@@ -3348,6 +3348,7 @@ MonoBehaviour:
   optionsMenu: {fileID: 1461094229}
   mainMenu: {fileID: 1633989017}
   theNPC: {fileID: 490687238}
+  musicGameObject: {fileID: 980003324}
   loadingSubScene: {fileID: 1260075451}
 --- !u!328 &979119767
 VideoPlayer:
@@ -3414,6 +3415,7 @@ MonoBehaviour:
   _androidAdUnitId: Interstitial_Android
   _iOsAdUnitId: Interstitial_iOS
   button1: {fileID: 0}
+  loadingSubScene: {fileID: 97583376}
 --- !u!1 &980003324
 GameObject:
   m_ObjectHideFlags: 0
@@ -3964,6 +3966,18 @@ MonoBehaviour:
       - m_Target: {fileID: 979119769}
         m_TargetAssemblyTypeName: IntersitialAdsButton, Assembly-CSharp
         m_MethodName: ShowAd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 979119766}
+        m_TargetAssemblyTypeName: OptionsGameObject, Assembly-CSharp
+        m_MethodName: ChangeSceneFromMenuToLevelOne
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

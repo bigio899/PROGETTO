@@ -13,6 +13,9 @@ public class OptionsGameObject : MonoBehaviour
     //variable used for the animation of the player at the main menu UI.
     public GameObject theNPC;
 
+    //variable that's used for the background music.
+    [SerializeField] private GameObject musicGameObject;
+
     //variable that is used to contain the loading subscene.
     [SerializeField] private GameObject loadingSubScene;  //loading screen gameobject. 
 
@@ -33,11 +36,7 @@ public class OptionsGameObject : MonoBehaviour
     //function that is performed when the player click the Play button.
     public void ChangeSceneFromMenuToLevelOne()
     {
-        if (loadingSubScene.gameObject.activeInHierarchy != true)
-        {
-            loadingSubScene.gameObject.SetActive(true);
-        }
-        SceneManager.LoadScene(1); //this line of code will open the scene of the level.
+        musicGameObject.gameObject.SetActive(false);
     }
 
     //function that is performed when the player click the Resume button.
