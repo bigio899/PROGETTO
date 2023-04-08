@@ -12,6 +12,8 @@ public class IntersitialAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnity
 
     private string stringActualScene;
     private int numberActualScene;
+
+    public bool isPlay = false;
     void Awake()
     {
         // Get the Ad Unit ID for the current platform:
@@ -75,6 +77,18 @@ public class IntersitialAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnity
         }
 
         loadingSubScene.gameObject.SetActive(true);
-        SceneManager.LoadScene(numberActualScene+DataPersistence.instanceDataPersistence.levelAvancement);
+        if (isPlay == true)
+        {
+            SceneManager.LoadScene(1);
+        }
+        else if (isPlay == false)
+        {
+            SceneManager.LoadScene(DataPersistence.instanceDataPersistence.levelAvancement);
+        }
+    }
+
+    public void PlayVerifier()
+    {
+        isPlay = true;
     }
 }
