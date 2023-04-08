@@ -21,6 +21,7 @@ public class GameManager1 : MonoBehaviour
     [SerializeField] private GameObject ausiliarGO1Look; //gameobject used for block the camera movement. 
     [SerializeField] private GameObject ausiliarGO2Move;  //gameobject used for block the player movement.
     [SerializeField] private GameObject ausiliarG03TimerStop; //gameobject used to verify that the player have ended the level and the timer must be stopped.
+    [SerializeField] private GameObject ausiliarAddingTimeGameManager; //gameobject used for add time to the gamemanager.
 
     //declaration variables.
     private int levelNumber = 0; //this variable is used to identify the level and load the scene of the relative level if the time ends. 
@@ -40,16 +41,20 @@ public class GameManager1 : MonoBehaviour
     [SerializeField] private VideoPlayer introductionChapterVideosource; // Chapter 1-2-3 Introduction Video texted with sound.
     private bool ausiliarIntroductionChapters = false; //ausiliar variable used for the coroutine.
     private bool ausiliarSecondFrameVideo = false; //ausiliar variable used for do the condition of the introduction form the second frame after the playing of the video.  
+
+    //reawrd another time with ads variable utilities.
+    [SerializeField] private GameObject failureMenuUtilitiesVar;
     // Start is called before the first frame update.
     void Start()
     {
         failureLevelAdviseUI.gameObject.SetActive(false);
+        failureMenuUtilitiesVar.gameObject.SetActive(false);
 
         nameOftheCurrentScene = SceneManager.GetActiveScene().name; //get the name of the current active scene.
         Debug.Log(nameOftheCurrentScene);
         if(nameOftheCurrentScene == nameFirstLevelScene) //if the scene is Level1
         {
-            valueTimeForCountdown = 359.00f; //set the start value of the timer to 5 minutes.
+            valueTimeForCountdown = 359.00f; //set the start value of the timer to 6 minutes.
             levelNumber = 1;
             DataPersistence.instanceDataPersistence.levelAvancement = 1; //add the persistence of the level avancemenent 1.
             DataPersistence.instanceDataPersistence.SaveLevelAvancementFunction(); //save this value in json.
@@ -57,7 +62,7 @@ public class GameManager1 : MonoBehaviour
 
         else if(nameOftheCurrentScene == nameSecondLevelScene) //if the scene is Level2
         {
-            valueTimeForCountdown = 1199.00f; //set the start value of the timer to 10 minutes.
+            valueTimeForCountdown = 719.00f; //set the start value of the timer to 12 minutes.
             levelNumber = 2;
             DataPersistence.instanceDataPersistence.levelAvancement = 2; //add the persistence of the level avancemenent 2.
             DataPersistence.instanceDataPersistence.SaveLevelAvancementFunction(); //save this value in json.
@@ -65,7 +70,7 @@ public class GameManager1 : MonoBehaviour
 
         else if(nameOftheCurrentScene == nameThirdLevelScene) // if the scene is Level3
         {
-            valueTimeForCountdown = 1199.00f; //set the start value of the timer to 10 minutes. 
+            valueTimeForCountdown = 719.00f; //set the start value of the timer to 12 minutes. 
             levelNumber = 3;
             DataPersistence.instanceDataPersistence.levelAvancement = 3; //add the persistence of the level avancement 3.
             DataPersistence.instanceDataPersistence.SaveLevelAvancementFunction(); //save this value in json format extension. 
@@ -73,7 +78,14 @@ public class GameManager1 : MonoBehaviour
     }
     private void Update()
     {
-        if(introductionChapterVideosource.isPlaying)
+        if(ausiliarAddingTimeGameManager.gameObject.activeSelf == true) //ausiliar gameobject used for add time to the gamemanager.
+        {
+            valueTimeForCountdown = 89.0f; //set the value of the timer to 1.30 minutes. 
+            ausiliarAddingTimeGameManager.gameObject.SetActive(false);
+        }
+
+        //ausiliar condition used for the first frame. 
+        if (introductionChapterVideosource.isPlaying)
         {
             ausiliarSecondFrameVideo = true;
         }
@@ -105,11 +117,7 @@ public class GameManager1 : MonoBehaviour
 
         }
 
-        //condition that verify that the player has failed the level.
-        if (isFailureCoroutineEnded == true)
-        {
-            SceneManager.LoadScene(levelNumber);
-        }
+
     }
 
 
@@ -131,23 +139,24 @@ public class GameManager1 : MonoBehaviour
             if ((secondsOfCountdown == 0) && (isGameAlreadyEnded != true)) //if the timer is arrived to 0 seconds remaining
             {
                 isGameAlreadyEnded = true;  //the boolean value that verify that the timer is expired(scaduto) will changed to tue.
-                StartCoroutine(FailureLevelCoroutine());
-                failureLevelAdviseUI.gameObject.SetActive(true); 
+                failureLevelAdviseUI.gameObject.SetActive(true);
                 Debug.Log("il tempo è scaduto, riprova!");
                 ausiliarGO1Look.gameObject.SetActive(true); //ausiliar gameobject used in the look script.
                 ausiliarGO2Move.gameObject.SetActive(true); //ausiliar gameobject used in the movement script.
+
+                //failure menu gameobjects are sected to active.
+                failureMenuUtilitiesVar.gameObject.SetActive(true);
             }
         }
+        else if ((minutesOfCountdown >= 0) && (secondsOfCountdown > 10)) //if the timer is over ten seconds of time remaining
+        {
+            countdownTextUI.color = Color.white; // set the color to white
+        }
+
         if ((valueTimeForCountdown > 0) && (ausiliarG03TimerStop.gameObject.activeInHierarchy == true)) //if the level is passed successfully
         {
             countdownTextUI.color = Color.green; //the color of the timer text will be setted to green.
         }
-    }
-
-    private IEnumerator FailureLevelCoroutine()
-    {
-        yield return new WaitForSeconds(8.0f);
-        isFailureCoroutineEnded = true;
     }
 
     public void OnClickEnterButtonMainFunction()

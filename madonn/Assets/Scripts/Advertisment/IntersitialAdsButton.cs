@@ -13,7 +13,8 @@ public class IntersitialAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnity
     private string stringActualScene;
     private int numberActualScene;
 
-    public bool isPlay = false;
+    private bool isPlay = false;
+
     void Awake()
     {
         // Get the Ad Unit ID for the current platform:
@@ -58,37 +59,46 @@ public class IntersitialAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnity
 
     public void OnUnityAdsShowStart(string _adUnitId) { }
     public void OnUnityAdsShowClick(string _adUnitId) { }
+
+    //function that is called after the end of the advertisment.
     public void OnUnityAdsShowComplete(string _adUnitId, UnityAdsShowCompletionState showCompletionState) 
     {
-        stringActualScene = SceneManager.GetActiveScene().name;
-        if(stringActualScene == "SampleScene")
+        stringActualScene = SceneManager.GetActiveScene().name; //get the name of the scene in esecution. 
+        if (stringActualScene == "SampleScene")
         {
-            numberActualScene = 0;
-        } 
-
-        else if(stringActualScene == "Level1")
-        {
-            numberActualScene = 1;
+            numberActualScene = 0; //menu.
         }
 
-        else if(stringActualScene =="Level2")
+        else if (stringActualScene == "Level1")
         {
-            numberActualScene = 2;
+            numberActualScene = 1; //level1.
+        }
+
+        else if (stringActualScene == "Level2") 
+        {
+            numberActualScene = 2; //level2.
+        }
+
+        else if(stringActualScene == "Level3")
+        {
+            numberActualScene = 3; //level3.
         }
 
         loadingSubScene.gameObject.SetActive(true);
         if (isPlay == true)
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(1); //load the level 1 scene.
+            isPlay = false;
         }
         else if (isPlay == false)
         {
-            SceneManager.LoadScene(DataPersistence.instanceDataPersistence.levelAvancement);
+            SceneManager.LoadScene(numberActualScene + DataPersistence.instanceDataPersistence.levelAvancement);
         }
     }
 
+    //function that starts id the player click on the play button. 
     public void PlayVerifier()
     {
-        isPlay = true;
+        isPlay = true; //the value assigned is positive.
     }
 }

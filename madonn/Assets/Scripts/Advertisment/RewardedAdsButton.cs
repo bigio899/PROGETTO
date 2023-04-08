@@ -8,6 +8,12 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     [SerializeField] string _iOSAdUnitId = "Rewarded_iOS";
     string _adUnitId = null; // This will remain null for unsupported platforms
 
+    //ausiliar gameobjects.
+    [SerializeField] private GameObject ausiliarGO1Look; //gameobject used for block the camera movement. 
+    [SerializeField] private GameObject ausiliarGO2Move;  //gameobject used for block the player movement.
+    [SerializeField] private GameObject ausiliarAddingTimeGameManager; //gameobject used for add time to the gamemanager.
+
+    //Awake function
     void Awake()
     {
         // Get the Ad Unit ID for the current platform:
@@ -46,8 +52,6 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     // Implement a method to execute when the user clicks the button:
     public void ShowAd()
     {
-        // Disable the button:
-        _showAdButton.interactable = false;
         // Then show the ad:
         Advertisement.Show(_adUnitId, this);
     }
@@ -59,7 +63,11 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
         {
             Debug.Log("Unity Ads Rewarded Ad Completed");
             // Grant a reward.
-            Debug.Log("You've gained another 2 minutes for finish the level.");
+            (GameObject.Find("FailureMenu")).gameObject.SetActive(false);
+            ausiliarGO1Look.gameObject.SetActive(false);
+            ausiliarGO2Move.gameObject.SetActive(false);
+            ausiliarAddingTimeGameManager.gameObject.SetActive(true);
+            Debug.Log("You've gained another seconds for finish the level.");
         }
     }
 
