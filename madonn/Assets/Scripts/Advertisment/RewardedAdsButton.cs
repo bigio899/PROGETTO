@@ -23,8 +23,6 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
         _adUnitId = _androidAdUnitId;
 #endif
 
-        //Disable the button until the ad is ready to show:
-        _showAdButton.interactable = false;
     }
 
     // Load content to the Ad Unit:
@@ -87,9 +85,4 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     public void OnUnityAdsShowStart(string adUnitId) { }
     public void OnUnityAdsShowClick(string adUnitId) { }
 
-    void OnDestroy()
-    {
-        // Clean up the button listeners:
-        _showAdButton.onClick.RemoveAllListeners();
-    }
 }

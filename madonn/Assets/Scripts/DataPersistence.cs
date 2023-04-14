@@ -10,7 +10,6 @@ public class DataPersistence : MonoBehaviour
 
     //persistent variables
     public int levelAvancement = 1;
-
     //Awake function(called the first frame after that the gameobject "DataPersistenceGO" is created).
     private void Awake()
     {

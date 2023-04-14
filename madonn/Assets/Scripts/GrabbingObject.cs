@@ -79,6 +79,9 @@ public class GrabbingObject : MonoBehaviour
     //name of the current scene variable
     private string nameOftheCurrentScene;
 
+    //end level variables gameobjects 
+    [SerializeField] private GameObject endLevelGO; 
+
     // Start function is called before the first frame update.(MAIN)
     private void Start()
     {
@@ -95,10 +98,18 @@ public class GrabbingObject : MonoBehaviour
     // Update function is called once per frame(MAIN2)
     private void Update()
     {
+        if (isKeyGrabbedToThePlayer == true)
+        {
+            keyIconImage.gameObject.SetActive(acceptedTransition); //the key icon is sected to active.
+        }
+        else if (isKeyGrabbedToThePlayer == false)
+        {
+            keyIconImage.gameObject.SetActive(rejectedTransition); //the key icon is sected to disactive.
+        }
+        
         if (isKeyCoroutineEnded != false) //if the TimeOfViewingKeyText coroutine is ended.
         {
             keyGrabbedTextAdvise.gameObject.SetActive(rejectedTransition); // the text that inform the player whop has grabbed the key is sected to inactive.
-            keyIconImage.gameObject.SetActive(acceptedTransition); //the key icon is sected to active.
             isKeyCoroutineEnded = false;
         }
 
@@ -138,18 +149,6 @@ public class GrabbingObject : MonoBehaviour
         {
             timerAusiliarGOLengthLifeOfBattery.gameObject.SetActive(acceptedTransition); //the ausiliar gameobject is actived for verifiy to "batteryiconscript" that the coroutine is started.
             isBatteryStarted = false;
-        }
-
-        if (ausiliarCoroutineVariable == 1) //if the first level is passed
-        {
-            if (loadingSubScene.gameObject.activeInHierarchy != true) //if the loading scene isn't already started
-            {
-                loadingSubScene.gameObject.SetActive(true); // active the loading sub scene (for the transition between the two levels).
-                pauseSubScene.gameObject.SetActive(false); textAndButtons.gameObject.SetActive(false); // disactive all the canvas(excluding zero).
-                
-            }
-            SceneManager.LoadScene(2); //load the second level.
-            DataPersistence.instanceDataPersistence.levelAvancement = 2; //data persistence level advance 2.
         }
 
         if(ausiliarCoroutineVariable2 == 1) //if the second level is passed
@@ -342,13 +341,6 @@ public class GrabbingObject : MonoBehaviour
     //LEVEL1!
     //+
 
-    //end scene coroutine level1.
-    private IEnumerator EndSceneCoroutineWait()
-    {
-        yield return (new WaitForSeconds(1.50f));
-        ausiliarCoroutineVariable = 1;
-    }
-
     //level1 triggerer active function.
     private void Level1FunctionTriggerer(Collider other)
     {
@@ -369,7 +361,6 @@ public class GrabbingObject : MonoBehaviour
                 }
 
                 doorBunkerOpeningTextAdvise.gameObject.SetActive(acceptedTransition);  // the text that inform the player who's opening the bunker door is sected to active.
-                keyIconImage.gameObject.SetActive(false); //disactive the icon of the key.
                 StartCoroutine(TimeOfViewingOpeningDoorBunkerText()); // start of 4 seconds of coroutine
                 isKeyGrabbedToThePlayer = false;
             }
@@ -381,6 +372,7 @@ public class GrabbingObject : MonoBehaviour
                     StartCoroutine(TimeOfViewingMissingKeyText()); //start of 5 seconds of coroutine
                 }
             }
+            other.gameObject.SetActive(false);
         }
 
         //end level trigger level1
@@ -388,10 +380,11 @@ public class GrabbingObject : MonoBehaviour
         {
             Debug.Log("level passed");
             levelPassedTextAdvise.gameObject.SetActive(true); //level passed advise text.
-            StartCoroutine(EndSceneCoroutineWait()); //starting of 6 seconds of coroutine.
             ausiliarGO1Look.gameObject.SetActive(acceptedTransition); //block of the movement input from the player.
             ausiliarGO2Move.gameObject.SetActive(acceptedTransition); //block of the looking visual input from the player.
             ausiliarGO03TimerStop.gameObject.SetActive(acceptedTransition); //block of the timer value.
+            textAndButtons.gameObject.SetActive(false); // disactive the buttons(invisible).
+            endLevelGO.gameObject.SetActive(true); //actove the menu for change the level.
         }
     
     }

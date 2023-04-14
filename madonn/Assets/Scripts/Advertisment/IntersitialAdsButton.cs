@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro;
+
 public class IntersitialAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
 {
     [SerializeField] string _androidAdUnitId = "Interstitial_Android";
@@ -13,7 +13,19 @@ public class IntersitialAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnity
     private string stringActualScene;
     private int numberActualScene;
 
-    private bool isPlay = false;
+    private bool isPlayButton = false; //this bool is used for verify in Menu that the button clicked is button.
+    private bool backMenuVerifier = false; //this bool is used for verify in levels that the button clicked is "BackToMenuButton".
+    private bool nextLevelVerifier = false; //this bool is used for verify in levels that the button clicked is "NextLevel".
+
+    //GAMEOBJECT TO DISACTIVE END LEVEL
+    [SerializeField] private GameObject endLevel;
+    [SerializeField] private GameObject gamebuttonText;
+    [SerializeField] private GameObject textAdvisePassedLevel;
+    [SerializeField] private Image keyIconImage; //variable where's comtained the icon of the key.
+    [SerializeField] private GameObject clickerButton;
+    [SerializeField] private GameObject backMenuFromPlaying;
+    [SerializeField] private GameObject timer;
+    [SerializeField] private GameObject batteryIcon;
 
     void Awake()
     {
@@ -63,10 +75,20 @@ public class IntersitialAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnity
     //function that is called after the end of the advertisment.
     public void OnUnityAdsShowComplete(string _adUnitId, UnityAdsShowCompletionState showCompletionState) 
     {
+        loadingSubScene.gameObject.SetActive(true);
         stringActualScene = SceneManager.GetActiveScene().name; //get the name of the scene in esecution. 
         if (stringActualScene == "SampleScene")
         {
             numberActualScene = 0; //menu.
+            if (isPlayButton == true)
+            {
+                SceneManager.LoadScene(1); //load the level 1 scene.
+                isPlayButton = false;
+            }
+            else if (isPlayButton == false)
+            {
+                SceneManager.LoadScene(numberActualScene + DataPersistence.instanceDataPersistence.levelAvancement);
+            }
         }
 
         else if (stringActualScene == "Level1")
@@ -84,21 +106,51 @@ public class IntersitialAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnity
             numberActualScene = 3; //level3.
         }
 
-        loadingSubScene.gameObject.SetActive(true);
-        if (isPlay == true)
+        if (backMenuVerifier == true)
         {
-            SceneManager.LoadScene(1); //load the level 1 scene.
-            isPlay = false;
+            loadingSubScene.gameObject.SetActive(true);
+            SceneManager.LoadScene(0);
         }
-        else if (isPlay == false)
+        else if (nextLevelVerifier == true)
         {
-            SceneManager.LoadScene(numberActualScene + DataPersistence.instanceDataPersistence.levelAvancement);
+            loadingSubScene.gameObject.SetActive(true);
+            DataPersistence.instanceDataPersistence.levelAvancement = (SceneManager.GetActiveScene().buildIndex + 1);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
+ 
     }
 
     //function that starts id the player click on the play button. 
     public void PlayVerifier()
     {
-        isPlay = true; //the value assigned is positive.
+        isPlayButton = true; //the value assigned is positive.
+    }
+
+    //(LEVELS)function that starts if the player click on the "BackToMenuButton".
+    public void BackMenuVerifier()
+    {
+        clickerButton.gameObject.SetActive(false);
+        timer.gameObject.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+        batteryIcon.gameObject.SetActive(false);
+        backMenuFromPlaying.gameObject.SetActive(false);
+        keyIconImage.gameObject.SetActive(false);
+        endLevel.gameObject.SetActive(false);
+        gamebuttonText.gameObject.SetActive(false);
+        textAdvisePassedLevel.gameObject.SetActive(false);
+        backMenuVerifier = true; // the value assigned is changed to true.
+    }
+
+    //(LEVELS)function that starts if the player click on the "NextlevelButton".
+    public void NextLevelVerifier()
+    {
+        clickerButton.gameObject.SetActive(false);
+        timer.gameObject.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+        batteryIcon.gameObject.SetActive(false);
+        backMenuFromPlaying.gameObject.SetActive(false);
+        keyIconImage.gameObject.SetActive(false);
+        endLevel.gameObject.SetActive(false);
+        gamebuttonText.gameObject.SetActive(false);
+        textAdvisePassedLevel.gameObject.SetActive(false);
+        nextLevelVerifier = true; //the value assigned is changed to true.
     }
 }

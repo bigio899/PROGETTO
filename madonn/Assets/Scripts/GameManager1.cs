@@ -25,7 +25,6 @@ public class GameManager1 : MonoBehaviour
 
     //declaration variables.
     private int levelNumber = 0; //this variable is used to identify the level and load the scene of the relative level if the time ends. 
-    private bool isFailureCoroutineEnded = false; //boolean that verify that the timer is ended(zero value). 
 
     //declaration gameobjects's variables 
     [SerializeField] private GameObject loadingSubScene;  //loading screen gameobject. 
@@ -34,8 +33,7 @@ public class GameManager1 : MonoBehaviour
     //variables that are used for the countdown.
     [SerializeField] private TextMeshProUGUI countdownTextUI; //countdown timer text.
     [SerializeField] private TextMeshProUGUI failureLevelAdviseUI; //end countdown timer text advise.
-    private float valueTimeForCountdown;  //variable that contain the value in seconds of the timer and it is used for slides the time how the reality.
-    private bool isGameAlreadyEnded;  //boolean that verify if the timer is expired(scaduto).
+    [SerializeField] private float valueTimeForCountdown;  //variable that contain the value in seconds of the timer and it is used for slides the time how the reality.
 
     //Chapters Introductions
     [SerializeField] private VideoPlayer introductionChapterVideosource; // Chapter 1-2-3 Introduction Video texted with sound.
@@ -44,6 +42,7 @@ public class GameManager1 : MonoBehaviour
 
     //reawrd another time with ads variable utilities.
     [SerializeField] private GameObject failureMenuUtilitiesVar;
+
     // Start is called before the first frame update.
     void Start()
     {
@@ -136,11 +135,9 @@ public class GameManager1 : MonoBehaviour
         if ((minutesOfCountdown == 0) && (secondsOfCountdown <= 10)) //if the timer is arrived to 10 seconds or less
         {
             countdownTextUI.color = Color.red; //the color of the timer text will be setted to red.
-            if ((secondsOfCountdown == 0) && (isGameAlreadyEnded != true)) //if the timer is arrived to 0 seconds remaining
+            if ((secondsOfCountdown == 0)) //if the timer is arrived to 0 seconds remaining
             {
-                isGameAlreadyEnded = true;  //the boolean value that verify that the timer is expired(scaduto) will changed to tue.
                 failureLevelAdviseUI.gameObject.SetActive(true);
-                Debug.Log("il tempo è scaduto, riprova!");
                 ausiliarGO1Look.gameObject.SetActive(true); //ausiliar gameobject used in the look script.
                 ausiliarGO2Move.gameObject.SetActive(true); //ausiliar gameobject used in the movement script.
 
