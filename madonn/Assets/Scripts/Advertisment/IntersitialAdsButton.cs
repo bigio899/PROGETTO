@@ -114,8 +114,8 @@ public class IntersitialAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnity
         else if (nextLevelVerifier == true)
         {
             loadingSubScene.gameObject.SetActive(true);
-            DataPersistence.instanceDataPersistence.levelAvancement = (SceneManager.GetActiveScene().buildIndex + 1);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            DataPersistence.instanceDataPersistence.levelAvancement = (numberActualScene + 1);
+            SceneManager.LoadScene(numberActualScene + 1);
         }
  
     }

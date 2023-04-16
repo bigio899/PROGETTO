@@ -61,7 +61,7 @@ public class GameManager1 : MonoBehaviour
 
         else if(nameOftheCurrentScene == nameSecondLevelScene) //if the scene is Level2
         {
-            valueTimeForCountdown = 719.00f; //set the start value of the timer to 12 minutes.
+            valueTimeForCountdown = 539.00f; //set the start value of the timer to 9 minutes.
             levelNumber = 2;
             DataPersistence.instanceDataPersistence.levelAvancement = 2; //add the persistence of the level avancemenent 2.
             DataPersistence.instanceDataPersistence.SaveLevelAvancementFunction(); //save this value in json.
@@ -69,7 +69,7 @@ public class GameManager1 : MonoBehaviour
 
         else if(nameOftheCurrentScene == nameThirdLevelScene) // if the scene is Level3
         {
-            valueTimeForCountdown = 719.00f; //set the start value of the timer to 12 minutes. 
+            valueTimeForCountdown = 599.00f; //set the start value of the timer to 10 minutes. 
             levelNumber = 3;
             DataPersistence.instanceDataPersistence.levelAvancement = 3; //add the persistence of the level avancement 3.
             DataPersistence.instanceDataPersistence.SaveLevelAvancementFunction(); //save this value in json format extension. 

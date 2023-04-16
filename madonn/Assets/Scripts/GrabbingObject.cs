@@ -393,12 +393,7 @@ public class GrabbingObject : MonoBehaviour
     //LEVEL2!
     //+
 
-    //coroutine for the end of the second level.
-    private IEnumerator EndScene2CoroutineWait()
-    {
-        yield return new WaitForSeconds(1.0f);
-        ausiliarCoroutineVariable2 = 1;
-    }
+
 
     //level2 triggerer active function.
     private void Level2FunctionTriggerer(Collider other)
@@ -418,11 +413,12 @@ public class GrabbingObject : MonoBehaviour
         //end level triggerer level2.
         else if (other.gameObject.CompareTag("EndLevel2Passingtransition")) //if the player arrives in front ofthe mine
         {
+            levelPassedTextAdvise.gameObject.SetActive(true); //level passed advise text.
             padlockGameObjectTransition.gameObject.SetActive(false);
             Destroy(padlockGameObjectTransition); //destroy the padlock of the mine.
             Debug.Log("level passed");
-            levelPassedTextAdvise.gameObject.SetActive(true); //level passed advise text.
-            StartCoroutine(EndScene2CoroutineWait()); //starting of 6 seconds of coroutine.
+            textAndButtons.gameObject.SetActive(false); // disactive the buttons(invisible).
+            endLevelGO.gameObject.SetActive(true); //actove the menu for change the level.
             ausiliarGO1Look.gameObject.SetActive(acceptedTransition); //block of the movement input from the player.
             ausiliarGO2Move.gameObject.SetActive(acceptedTransition); //block of the looking visual input from the player.
             ausiliarGO03TimerStop.gameObject.SetActive(acceptedTransition); //block of the timer value.
