@@ -56,7 +56,7 @@ public class GameManager1 : MonoBehaviour
         Debug.Log(nameOftheCurrentScene);
         if (nameOftheCurrentScene == nameFirstLevelScene) //if the scene is Level1
         {
-            valueTimeForCountdown = 359.00f; //set the start value of the timer to 6 minutes.
+            valueTimeForCountdown = 319.00f; //set the start value of the timer to 6 minutes.
             levelNumber = 1;
             DataPersistence.instanceDataPersistence.levelAvancement = 1; //add the persistence of the level avancemenent 1.
             DataPersistence.instanceDataPersistence.SaveLevelAvancementFunction(); //save this value in json.
@@ -164,12 +164,12 @@ public class GameManager1 : MonoBehaviour
                     tipsGameObjects[0].gameObject.SetActive(true); //text active
                     StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[0])); //15 seconds of visualization
                 }
-                else if ((minutesOfCountdown == 4) && (secondsOfCountdown == 31)) //tip2
+                else if ((minutesOfCountdown == 4) && (secondsOfCountdown == 46)) //tip2
                 {
                     tipsGameObjects[1].gameObject.SetActive(true); //text active
                     StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[1])); //15 seconds of visualization
                 }
-                else if ((minutesOfCountdown == 3) && (secondsOfCountdown == 31)) //tip3
+                else if ((minutesOfCountdown == 3) && (secondsOfCountdown == 46)) //tip3
                 {
                     tipsGameObjects[2].gameObject.SetActive(true); //text active
                     StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[2])); //15 seconds of visualization
@@ -181,27 +181,24 @@ public class GameManager1 : MonoBehaviour
                 }
             }
             else if (levelNumber == 2) //TIPS LEVEL2
-            {
-                //Visualizing all the tips
-                if ((minutesOfCountdown == 8) && (secondsOfCountdown == 11)) //tip1
-                {
-                    Debug.Log("First Tip Level2 Called");
-                    tipsGameObjects[0].gameObject.SetActive(true); //text active
-                    StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[0])); //15 seconds of visualization
-                }
-                else if ((minutesOfCountdown == 5) && (secondsOfCountdown == 31)) //tip2
-                {
-                    Debug.Log("Second Tip Level2 Called");
-                    tipsGameObjects[1].gameObject.SetActive(true); //text active
-                    StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[1])); //15 seconds of visualization
-                }
-                else if ((minutesOfCountdown == 2) && (secondsOfCountdown == 31)) //tip3
-                {
-                    Debug.Log("Third Tip Level2 Called");
-                    tipsGameObjects[2].gameObject.SetActive(true); //text active
-                    StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[2])); //15 seconds of visualization
-                }
-            }
+           {
+               //Visualizing all the tips
+               if ((minutesOfCountdown == 8) && (secondsOfCountdown == 01)) //tip1
+               {
+                   tipsGameObjects[0].gameObject.SetActive(true); //text active
+                   StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[0])); //15 seconds of visualization
+               }
+               else if ((minutesOfCountdown == 5) && (secondsOfCountdown == 01)) //tip2
+               {
+                   tipsGameObjects[1].gameObject.SetActive(true); //text active
+                   StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[1])); //15 seconds of visualization
+               }
+               else if ((minutesOfCountdown == 2) && (secondsOfCountdown == 31)) //tip3
+               {
+                   tipsGameObjects[2].gameObject.SetActive(true); //text active
+                   StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[2])); //15 seconds of visualization
+               }
+           }
            /* else if (levelNumber == 3) //TIPS LEVEL3
            {
                //Visualizing all the tips

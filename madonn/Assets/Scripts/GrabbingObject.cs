@@ -11,7 +11,6 @@ public class GrabbingObject : MonoBehaviour
     //ausiliar GameObject
     [SerializeField] private GameObject counterClickerButtonAusiliarVar; //audsiliar gameobject used for the counter of click of the clickerbutton. 
     [SerializeField] private int ausiliarCoroutineVariable = 0; //change of the scene from level1 to level2.
-    
 
     //battery variables.
     private int numberOfActualBatteries = 0; //variable that is used to have the count of the actual batteries. 
@@ -38,9 +37,8 @@ public class GrabbingObject : MonoBehaviour
     private bool isBunkerDoorOpeningCoroutineEnded = false;  //boolean where is contained the information about the end or not of the TimeOfViewingOpeningDoorBunkerText coroutine.
     private bool[] areDrawersOpened = { false, false, false, false }; //booleans where are contained the informations about the drawers,if they are open or not.
     private bool isBatteryTurnedOff = false; //boolean where's contained the information about the grab or not of the battery.
-    private bool isBatteryGrabbed = false; //boolean where's contained the information about the grabbing or not of the battery
-    private bool hasAlreadyBatteryText = false; //boolean where's contained the information about the text advise "hasAlreadyBatteryGrabbed".
-    private bool ausiliarJumpScare = false; // boolean where's contained the information about the Jumpscare status.
+    private bool isBatteryGrabbed = false;
+    private bool hasAlreadyBatteryText = false;
 
     //door bug variables.
     private int ausiliarVarBunkerDoor = 0; //ausiliar variable that is used for
@@ -56,10 +54,6 @@ public class GrabbingObject : MonoBehaviour
     [SerializeField] private TextMeshProUGUI batteryGrabbedTextAdvise; //variable where's contained the text "Hai appena raccolto una batteria per la torcia".
     [SerializeField] private TextMeshProUGUI alreadyHasTheBatteryTextAdvise; //variable where's contained the text "Non puoi raccogliere la batteria,ne hai già una inserita nella torcia!".
     [SerializeField] private TextMeshProUGUI levelPassedTextAdvise; //variable where's contained the text "Hai superato il livello!".
-
-    //music and sounds variables
-    [SerializeField] private GameObject bunkerSoundEffect; //gameobject where's allocated the audiosoruce of the bunkersound effect.
-    [SerializeField] private GameObject jumpScareSoundEffect; // gameobject where's allocated the audiosource of the jumpscare effect.
 
     //static boolean values.
     private static bool acceptedTransition = true; //this static variable is sected to true value and is utilised only for active the gameobjects.
@@ -104,17 +98,6 @@ public class GrabbingObject : MonoBehaviour
     // Update function is called once per frame(MAIN2)
     private void Update()
     {
-        if ((areDoorsFixed == true) && (bunkerSoundEffect.GetComponent<AudioSource>().isPlaying == false))
-        {
-            bunkerSoundEffect.gameObject.SetActive(false); //disactive the sound of the bunker's opening.
-            StartCoroutine(JumpScareLevel1()); //start coroutine that set the active status of the jumpscare.
-        }
-
-        if (ausiliarJumpScare == true)
-        {
-            jumpScareSoundEffect.gameObject.SetActive(true);
-        }
-
         if (isKeyGrabbedToThePlayer == true)
         {
             keyIconImage.gameObject.SetActive(acceptedTransition); //the key icon is sected to active.
@@ -275,10 +258,6 @@ public class GrabbingObject : MonoBehaviour
         {
             Level3FunctionTriggerer(other); //call the function triggerer of the third level.
         }
-        else if (nameOftheCurrentScene == "Level4")
-        {
-            Level4FunctionTriggerer(other);
-        }     
     }
     //function that verify if the Drawer must be opened or closed,and then do the action(of opening or closing).
     private void OpeningOrClosingParametersMethod(int numberOfDrawer)
@@ -302,13 +281,6 @@ public class GrabbingObject : MonoBehaviour
         yield return (new WaitForSeconds(1.0f));
         ausiliarVarBunkerDoor = 1;
         areDoorsFixed = true;
-    }
-
-    //coroutine for don't have bugs for the key with the opening of both the doors.
-    private IEnumerator JumpScareLevel1()
-    {
-        yield return (new WaitForSeconds(1.5f));
-        ausiliarJumpScare = true;
     }
 
     //this function is used for set open the door.
@@ -369,24 +341,21 @@ public class GrabbingObject : MonoBehaviour
     //LEVEL1!
     //+
 
-
     //level1 triggerer active function.
-    private void Level1FunctionTriggerer(Collider other) 
+    private void Level1FunctionTriggerer(Collider other)
     {
         if (other.gameObject.CompareTag("BunkerDoor"))  //if the player's approaching at the door
         {
-            if ((isKeyGrabbedToThePlayer == true))  //if the player has got the key 
+            if ((isKeyGrabbedToThePlayer == true))  //if the player has the key 
             {
-                if ((ausiliarVarBunkerDoor == 1) && (areDoorsFixed == true)) // if the second bunkerdoor is opened
+                if ((ausiliarVarBunkerDoor == 1) && (areDoorsFixed == true))
                 {
-                    bunkerSoundEffect.gameObject.SetActive(true); //sound of the bunker's opening is played.
                     secondBunkerDoorAnimationOpening.SetBool("CanBeOpen", acceptedTransition); //in this line of code,we set the "CanBeOpen" parameter(created in the second animator controller) to true.
                     doorFixingBugErrorMissing = true;
                     ausiliarGO03TimerStop.gameObject.SetActive(true); //ausiliar variable that inform the GameManager that the timer must be stopped.
                 }
                 else if ((ausiliarVarBunkerDoor == 0) && (areDoorsFixed == false)) //this condition verify if the player is opening the first of the second door of the bunker. 
                 {
-                    bunkerSoundEffect.gameObject.SetActive(true); //sound of the bunker's opening is played.
                     firstbunkerDoorAnimationOpening.SetBool("CanBeOpen", acceptedTransition); //in this line of code,we set the "CanBeOpen" parameter (created in the first animator controller of the door) to true.
                     StartCoroutine(FixingDoorBug());
                 }
@@ -425,10 +394,24 @@ public class GrabbingObject : MonoBehaviour
     //+
 
 
+
     //level2 triggerer active function.
     private void Level2FunctionTriggerer(Collider other)
     {
-        if (other.gameObject.CompareTag("EndLevel2Passingtransition")) //if the player arrives in front ofthe mine
+        Debug.Log("called function");
+        //passage transform from in of the house to the out.
+        if (other.gameObject.CompareTag("ExitFirstHouseLevel2") && (isKeyGrabbedToThePlayer == true)) //if the player has the key to open the first door of level2
+        {
+            if (isKeyCoroutineEndedAusiliar == true)
+            {
+                ausiliarTeleportGO1.gameObject.SetActive(true);
+                isKeyGrabbedToThePlayer = false;
+                keyIconImage.gameObject.SetActive(false); //disactive the icon of the key.
+            }
+        }
+
+        //end level triggerer level2.
+        else if (other.gameObject.CompareTag("EndLevel2Passingtransition")) //if the player arrives in front ofthe mine
         {
             levelPassedTextAdvise.gameObject.SetActive(true); //level passed advise text.
             padlockGameObjectTransition.gameObject.SetActive(false);
@@ -442,24 +425,12 @@ public class GrabbingObject : MonoBehaviour
         }
     }
 
-
     //-------------------
     //LEVEL3!
     //+
 
     //level3 triggerer active function.
     private void Level3FunctionTriggerer(Collider other)
-    {
-
-    }
-
-
-    //----------------------
-    //LEVEL4!
-    //+
-
-    //level4 triggerer active function.
-    private void Level4FunctionTriggerer(Collider other)
     {
 
     }
