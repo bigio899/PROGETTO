@@ -23,11 +23,12 @@ public class PlayerMovement : MonoBehaviour
     private float xPositionTransform = 0.0f; //x axis pos
     private float zPositionTransform = 0.0f; //z axis pos
 
+    [SerializeField] private GameObject stepsSound;
+
     // Update is called once per frame
     void Update()
     {
-        
-        if (!ausiliarGO2Move.activeSelf) //if the gameobject is identified inactive(the timer is arrived to 0)
+        if (!ausiliarGO2Move.activeSelf) //if the gameobject isn't identified inactive(the timer isn't arrived to 0)
         {
             //                    |sphere creation|     |position of sphere|               |radius of sphere||check if the sphere is collided to the ground|
             isPlayerGrounded = Physics.CheckSphere(groundCheckerGameObjectTransform.position, groundDistance, groundMask);
@@ -46,6 +47,15 @@ public class PlayerMovement : MonoBehaviour
             //this line of code will do the movement of the player,having the 'movementposition' vector(that have the values of the direction that we want to do).
             //this vector is molitiplied by speed.
             playerController.Move(movementPosition * speedOfTheMovement); //this function can be used only with a charactercontroller object.
+
+            if ((movementPosition.x != 0) || (movementPosition.y != 0) || (movementPosition.z != 0))
+            {
+                stepsSound.gameObject.SetActive(true);
+            }
+            else
+            {
+                stepsSound.gameObject.SetActive(false);
+            }
 
             if ((isPlayerGrounded == true) && (Input.GetButtonDown("Jump")))  //condition that verify if the button (that use the jump force)is pressed and the player is on ground.
             {
