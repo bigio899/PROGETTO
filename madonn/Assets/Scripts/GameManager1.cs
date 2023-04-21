@@ -185,19 +185,16 @@ public class GameManager1 : MonoBehaviour
                 //Visualizing all the tips
                 if ((minutesOfCountdown == 8) && (secondsOfCountdown == 11)) //tip1
                 {
-                    Debug.Log("First Tip Level2 Called");
                     tipsGameObjects[0].gameObject.SetActive(true); //text active
                     StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[0])); //15 seconds of visualization
                 }
                 else if ((minutesOfCountdown == 5) && (secondsOfCountdown == 31)) //tip2
                 {
-                    Debug.Log("Second Tip Level2 Called");
                     tipsGameObjects[1].gameObject.SetActive(true); //text active
                     StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[1])); //15 seconds of visualization
                 }
                 else if ((minutesOfCountdown == 2) && (secondsOfCountdown == 31)) //tip3
                 {
-                    Debug.Log("Third Tip Level2 Called");
                     tipsGameObjects[2].gameObject.SetActive(true); //text active
                     StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[2])); //15 seconds of visualization
                 }
@@ -273,5 +270,21 @@ public class GameManager1 : MonoBehaviour
     {
         yield return new WaitForSeconds(15.0f);
         tip.gameObject.SetActive(false);
+    }
+
+    //Function called when the player stop the game and open the pause menu.
+    public void StopEsecutionGameFunction()
+    {
+        ausiliarGO1Look.gameObject.SetActive(true); //block of the movement input from the player.
+        ausiliarGO2Move.gameObject.SetActive(true); //block of the looking visual input from the player.
+        ausiliarG03TimerStop.gameObject.SetActive(true); //block of the timer value.
+    }
+
+    //Function called when the player resume the game from the pause.
+    public void ResumeEsecutionGameFunction()
+    {
+        ausiliarGO1Look.gameObject.SetActive(false); //sblock of the movement input from the player.
+        ausiliarGO2Move.gameObject.SetActive(false); //sblock of the looking visual input from the player.
+        ausiliarG03TimerStop.gameObject.SetActive(false); //sblock of the timer value.
     }
 }

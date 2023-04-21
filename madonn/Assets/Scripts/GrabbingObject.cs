@@ -33,7 +33,6 @@ public class GrabbingObject : MonoBehaviour
     //booleans values
     private bool isKeyGrabbedToThePlayer = false;  //boolean where is contained the information about the grab or not of the key.
     private bool isKeyCoroutineEnded = false;  //boolean where is contained the information about the end or not of the TimeOfViewingKeyText coroutine.
-    private bool isKeyCoroutineEndedAusiliar = false;
     private bool isKeyMissingCoroutineEnded = false;  //boolean where is contained the information about the end or not of the TimeOfViewingMissingKeyText coroutine.
     private bool isBunkerDoorOpeningCoroutineEnded = false;  //boolean where is contained the information about the end or not of the TimeOfViewingOpeningDoorBunkerText coroutine.
     private bool[] areDrawersOpened = { false, false, false, false }; //booleans where are contained the informations about the drawers,if they are open or not.
@@ -64,9 +63,6 @@ public class GrabbingObject : MonoBehaviour
     //static boolean values.
     private static bool acceptedTransition = true; //this static variable is sected to true value and is utilised only for active the gameobjects.
     private static bool rejectedTransition = false; //this static variable is sected to false value and is utilised only for active the gameobjects.
-
-    //transform variables.
-    [SerializeField] private GameObject ausiliarTeleportGO1; //variable where's contained the information about the position of the player.LEVEL2 ONLY
 
     //ausiliar gameobjects.
     [SerializeField] private GameObject ausiliarGO1Look; //gameobject used for block the camera movement. 
@@ -322,7 +318,6 @@ public class GrabbingObject : MonoBehaviour
     {
         yield return (new WaitForSeconds(2.5f));  //3 seconds for read the text that inform the player whop has grabbed the key.
         isKeyCoroutineEnded = true;
-        isKeyCoroutineEndedAusiliar = true; 
     }
 
     //this function is used for get 5 second of waiting before the text is disabled.
