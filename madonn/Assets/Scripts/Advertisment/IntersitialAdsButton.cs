@@ -75,6 +75,7 @@ public class IntersitialAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnity
     //function that is called after the end of the advertisment.
     public void OnUnityAdsShowComplete(string _adUnitId, UnityAdsShowCompletionState showCompletionState) 
     {
+        Destroy(this.gameObject);
         loadingSubScene.gameObject.SetActive(true);
         stringActualScene = SceneManager.GetActiveScene().name; //get the name of the scene in esecution. 
         if (stringActualScene == "SampleScene")
@@ -89,6 +90,7 @@ public class IntersitialAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnity
             {
                 SceneManager.LoadScene(numberActualScene + DataPersistence.instanceDataPersistence.levelAvancement);
             }
+
         }
 
         else if (stringActualScene == "Level1")

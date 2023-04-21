@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 #if (UNITY_EDITOR)
 using UnityEditor;
 #endif
@@ -16,6 +17,8 @@ public class UIScene : MonoBehaviour
     [SerializeField] GameObject gameButtons;  //variable where're allocated the buttons of the Menu(Play,Options,Exit...).
     [SerializeField] private GameObject audioSoruceBackgroundMusic; //variable where's allocated the music in the background of the menu.
 
+    //Resume Button used for the interactions
+    [SerializeField] private Button resumeButton;
     // Start is called before the first frame update.
     void Start()
     {
@@ -23,6 +26,15 @@ public class UIScene : MonoBehaviour
         loadingIntro.gameObject.SetActive(true);
         //start the 4 seconds of coroutine, where there's the intro that is sected to active. 
         StartCoroutine(LoadingCoroutine());
+
+        if(DataPersistence.instanceDataPersistence.levelAvancement == 1)
+        {
+            resumeButton.interactable = false;
+        }
+        else
+        {
+            resumeButton.interactable = true;
+        }
     }
 
     // Update is called once per frame

@@ -100,6 +100,7 @@ public class GrabbingObject : MonoBehaviour
     // Update function is called once per frame(MAIN2)
     private void Update()
     {
+
         if ((areDoorsFixed == true) && (bunkerSoundEffect.GetComponent<AudioSource>().isPlaying == false))
         {
             bunkerSoundEffect.gameObject.SetActive(false); //disactive the sound of the bunker's opening.

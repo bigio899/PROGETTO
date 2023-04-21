@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using UnityEngine.Advertisements;
 public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
 {
-    [SerializeField] Button _showAdButton; //button assigned,taht when we click it the ads starts.
     [SerializeField] string _androidAdUnitId = "Rewarded_Android";
     [SerializeField] string _iOSAdUnitId = "Rewarded_iOS";
     string _adUnitId = null; // This will remain null for unsupported platforms
@@ -37,14 +36,6 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     public void OnUnityAdsAdLoaded(string adUnitId)
     {
         Debug.Log("Ad Loaded: " + adUnitId);
-
-        if (adUnitId.Equals(_adUnitId))
-        {
-            // Configure the button to call the ShowAd() method when clicked:
-            _showAdButton.onClick.AddListener(ShowAd);
-            // Enable the button for users to click:
-            _showAdButton.interactable = true;
-        }
     }
 
     // Implement a method to execute when the user clicks the button:
@@ -66,6 +57,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
             ausiliarGO2Move.gameObject.SetActive(false);
             ausiliarAddingTimeGameManager.gameObject.SetActive(true);
             Debug.Log("You've gained another seconds for finish the level.");
+            Destroy(this.gameObject);
         }
     }
 

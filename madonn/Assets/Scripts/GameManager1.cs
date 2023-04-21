@@ -46,6 +46,7 @@ public class GameManager1 : MonoBehaviour
 
     //Tips GameObjects.
     [SerializeField] private GameObject[] tipsGameObjects;
+
     // Start is called before the first frame update.
     void Start()
     {
