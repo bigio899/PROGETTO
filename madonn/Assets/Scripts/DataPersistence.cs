@@ -2,26 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-
+using UnityEngine.SceneManagement;
 public class DataPersistence : MonoBehaviour
 {
     //instance of the class variable.
     public static DataPersistence instanceDataPersistence; //Instance of the "DataPersistence" class.This class is static.
-
     //persistent variables
     public int levelAvancement = 1;
     //Awake function(called the first frame after that the gameobject "DataPersistenceGO" is created).
     private void Awake()
     {
-        if (instanceDataPersistence != null) //if there's already an instance
+
+        if ((instanceDataPersistence != null)) //if there's already an instance
         {
             Destroy(instanceDataPersistence); //destroy the instance and create another new.
             return; //return and continue. 
         }
 
         instanceDataPersistence = this; //the instance class is the actual.
-        DontDestroyOnLoad(instanceDataPersistence); //function singleton that do the persistence between scenes of some datas.
 
+        DontDestroyOnLoad(instanceDataPersistence); //function singleton that do the persistence between scenes of some datas.
+        StartCoroutine(PersistenceAux());
         LoadLevelAvancementFunction(); //load of the function that load the persistent datas.
     }
 
@@ -59,4 +60,9 @@ public class DataPersistence : MonoBehaviour
         }
     }
 
+    private IEnumerator PersistenceAux()
+    {
+        yield return new WaitForSeconds(0.01f);
+        gameObject.tag = "AuxPersistence";
+    }
 }

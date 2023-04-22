@@ -90,7 +90,6 @@ public class IntersitialAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnity
             {
                 SceneManager.LoadScene(numberActualScene + DataPersistence.instanceDataPersistence.levelAvancement);
             }
-
         }
 
         else if (stringActualScene == "Level1")

@@ -200,31 +200,31 @@ public class GameManager1 : MonoBehaviour
                     StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[2])); //15 seconds of visualization
                 }
             }
-           /* else if (levelNumber == 3) //TIPS LEVEL3
+            else if (levelNumber == 3) //TIPS LEVEL3
            {
                //Visualizing all the tips
-               if ((minutesOfCountdown == ) && (secondsOfCountdown == )) //tip1
+               if ((minutesOfCountdown == 8) && (secondsOfCountdown == 31)) //tip1
                {
                    tipsGameObjects[0].gameObject.SetActive(true); //text active
                    StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[0])); //15 seconds of visualization
                }
-               else if ((minutesOfCountdown == ) && (secondsOfCountdown == )) //tip2
+               else if ((minutesOfCountdown == 6) && (secondsOfCountdown == 01)) //tip2
                {
                    tipsGameObjects[1].gameObject.SetActive(true); //text active
                    StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[1])); //15 seconds of visualization
                }
-               else if ((minutesOfCountdown == ) && (secondsOfCountdown == )) //tip3
+               else if ((minutesOfCountdown == 4) && (secondsOfCountdown == 01)) //tip3
                {
                    tipsGameObjects[2].gameObject.SetActive(true); //text active
                    StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[2])); //15 seconds of visualization
                }
-               else if ((minutesOfCountdown == ) && (secondsOfCountdown == )) //tip4
+               else if ((minutesOfCountdown == 2) && (secondsOfCountdown == 01)) //tip4
                {
                    tipsGameObjects[3].gameObject.SetActive(true); //text active 
                    StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[3])); //15 seconds of visualization
                }
            }
-           else if (levelNumber == 4) //TIPS LEVEL4
+           /* else if (levelNumber == 4) //TIPS LEVEL4
            {
                //Visualizing all the tips
                if ((minutesOfCountdown == ) && (secondsOfCountdown == )) //tip1

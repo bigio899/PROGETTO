@@ -26,20 +26,25 @@ public class UIScene : MonoBehaviour
         loadingIntro.gameObject.SetActive(true);
         //start the 4 seconds of coroutine, where there's the intro that is sected to active. 
         StartCoroutine(LoadingCoroutine());
+    }
 
-        if(DataPersistence.instanceDataPersistence.levelAvancement == 1)
+    //Awake is called the first frame after start.
+    private void Awake()
+    {
+        if ((DataPersistence.instanceDataPersistence.levelAvancement == 1) && (audioSoruceBackgroundMusic.activeInHierarchy == true))
         {
             resumeButton.interactable = false;
         }
-        else
+        else if ((DataPersistence.instanceDataPersistence.levelAvancement > 1) && (audioSoruceBackgroundMusic.activeInHierarchy == true))
         {
             resumeButton.interactable = true;
         }
-    }
 
+    }
     // Update is called once per frame
     private void Update()
     {
+
         //condition that verify if the coroutine is ended.If the value is true,all the GameButtons of the menu will back active, and the intro will disabilited.
         if ((isCoroutineEnded == true) && (ausiliarVariable == 0))
         {
