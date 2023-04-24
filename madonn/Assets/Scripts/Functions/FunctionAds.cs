@@ -37,6 +37,7 @@ public class FunctionAds : MonoBehaviour
         textAdvisePassedLevel.gameObject.SetActive(false);
 
         loadingSubScene.gameObject.SetActive(true);
+        CallLoadingFunctionAdvertisement();
     }
 
     //(LEVELS)function that starts if the player click on the "NextlevelButton".
@@ -52,5 +53,15 @@ public class FunctionAds : MonoBehaviour
         textAdvisePassedLevel.gameObject.SetActive(false);
 
         loadingSubScene.gameObject.SetActive(true);
+        CallLoadingFunctionAdvertisement();
+    }
+
+    private void CallLoadingFunctionAdvertisement()
+    {
+        IntersitialAdsButton interstitialAdsButton = GameObject.Find("Advertisement").GetComponent<IntersitialAdsButton>();
+        interstitialAdsButton.LoadAd();
+
+        RewardedAdsButton rewardedAdsButton = GameObject.Find("Advertisement").GetComponent<RewardedAdsButton>();
+        rewardedAdsButton.LoadAd();
     }
 }

@@ -4,13 +4,28 @@ using UnityEngine;
 
 public class OnClickButton : MonoBehaviour
 {
-    public RewardedAdsButton rewardedAdsButton; //reference of rewarded button script.
-    public IntersitialAdsButton interstitialAdsButton; //reference of intersitial button script.
+
     public void BackMenuFunction()
     {
         IntersitialAdsButton interstitialAdsButton = GameObject.Find("Advertisement").GetComponent<IntersitialAdsButton>(); //reference of intersitial button script.
-        interstitialAdsButton.ShowAd();
         GameObject.Find("backMenuVerifier").SetActive(false);
+        interstitialAdsButton.ShowAd();
+        interstitialAdsButton.LoadAd();
+    }
+
+    public void RewardAdsFunction()
+    {
+        RewardedAdsButton rewardAdsFunction = GameObject.Find("Advertisement").GetComponent<RewardedAdsButton>();
+        rewardAdsFunction.ShowAd();
+        rewardAdsFunction.LoadAd();
+    }
+
+    public void NextLevel()
+    {
+        IntersitialAdsButton intersitialAdsButton = GameObject.Find("Advertisement").GetComponent<IntersitialAdsButton>();
+        GameObject.Find("nextLevelVerifier").SetActive(false);
+        intersitialAdsButton.ShowAd();
+        intersitialAdsButton.LoadAd();
     }
 
 }

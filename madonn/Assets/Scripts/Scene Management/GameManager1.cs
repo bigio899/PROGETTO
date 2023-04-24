@@ -57,6 +57,8 @@ public class GameManager1 : MonoBehaviour
         Debug.Log(nameOftheCurrentScene);
         if (nameOftheCurrentScene == nameFirstLevelScene) //if the scene is Level1
         {
+            CallLoadingFunctionAdvertisement();
+
             valueTimeForCountdown = 359.00f; //set the start value of the timer to 6 minutes.
             levelNumber = 1;
             DataPersistence.instanceDataPersistence.levelAvancement = 1; //add the persistence of the level avancemenent 1.
@@ -65,6 +67,8 @@ public class GameManager1 : MonoBehaviour
 
         else if (nameOftheCurrentScene == nameSecondLevelScene) //if the scene is Level2
         {
+            CallLoadingFunctionAdvertisement();
+
             valueTimeForCountdown = 539.00f; //set the start value of the timer to 9 minutes.
             levelNumber = 2;
             DataPersistence.instanceDataPersistence.levelAvancement = 2; //add the persistence of the level avancemenent 2.
@@ -73,6 +77,8 @@ public class GameManager1 : MonoBehaviour
 
         else if (nameOftheCurrentScene == nameThirdLevelScene) // if the scene is Level3
         {
+            CallLoadingFunctionAdvertisement();
+
             valueTimeForCountdown = 599.00f; //set the start value of the timer to 10 minutes. 
             levelNumber = 3;
             DataPersistence.instanceDataPersistence.levelAvancement = 3; //add the persistence of the level avancement 3.
@@ -80,6 +86,8 @@ public class GameManager1 : MonoBehaviour
         }
         else if (nameOftheCurrentScene == nameFourthLevelScene) // if the scene is level4
         {
+            CallLoadingFunctionAdvertisement();
+
             valueTimeForCountdown = 599.00f; //set the start value of the timer to 10 minutes.
             levelNumber = 4;
             DataPersistence.instanceDataPersistence.levelAvancement = 4; //add the persistence of the level avancement 4.
@@ -90,6 +98,8 @@ public class GameManager1 : MonoBehaviour
     {
         if (ausiliarAddingTimeGameManager.gameObject.activeSelf == true) //ausiliar gameobject used for add time to the gamemanager.
         {
+            CallLoadingFunctionAdvertisement();
+
             valueTimeForCountdown = 89.0f; //set the value of the timer to 1.30 minutes. 
             ausiliarAddingTimeGameManager.gameObject.SetActive(false);
         }
@@ -145,6 +155,8 @@ public class GameManager1 : MonoBehaviour
             countdownTextUI.color = Color.red; //the color of the timer text will be setted to red.
             if ((secondsOfCountdown == 0)) //if the timer is arrived to 0 seconds remaining
             {
+                CallLoadingFunctionAdvertisement();
+
                 failureLevelAdviseUI.gameObject.SetActive(true);
                 ausiliarGO1Look.gameObject.SetActive(true); //ausiliar gameobject used in the look script.
                 ausiliarGO2Move.gameObject.SetActive(true); //ausiliar gameobject used in the movement script.
@@ -287,5 +299,14 @@ public class GameManager1 : MonoBehaviour
         ausiliarGO1Look.gameObject.SetActive(false); //sblock of the movement input from the player.
         ausiliarGO2Move.gameObject.SetActive(false); //sblock of the looking visual input from the player.
         ausiliarG03TimerStop.gameObject.SetActive(false); //sblock of the timer value.
+    }
+
+    private void CallLoadingFunctionAdvertisement()
+    {
+        IntersitialAdsButton interstitialAdsButton = GameObject.Find("Advertisement").GetComponent<IntersitialAdsButton>();
+        interstitialAdsButton.LoadAd();
+
+        RewardedAdsButton rewardedAdsButton = GameObject.Find("Advertisement").GetComponent<RewardedAdsButton>();
+        rewardedAdsButton.LoadAd();
     }
 }

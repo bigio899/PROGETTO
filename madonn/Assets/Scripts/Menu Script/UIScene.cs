@@ -31,14 +31,8 @@ public class UIScene : MonoBehaviour
     //Awake is called the first frame after start.
     private void Awake()
     {
-        if ((DataPersistence.instanceDataPersistence.levelAvancement == 1) && (audioSoruceBackgroundMusic.activeInHierarchy == true))
-        {
-            resumeButton.interactable = false;
-        }
-        else if ((DataPersistence.instanceDataPersistence.levelAvancement > 1) && (audioSoruceBackgroundMusic.activeInHierarchy == true))
-        {
-            resumeButton.interactable = true;
-        }
+        IntersitialAdsButton interstitialAdsButton = GameObject.Find("Advertisement").GetComponent<IntersitialAdsButton>();
+        interstitialAdsButton.LoadAd();
 
     }
     // Update is called once per frame
@@ -54,6 +48,14 @@ public class UIScene : MonoBehaviour
             ausiliarVariable = 1;
         }
 
+        if ((DataPersistence.instanceDataPersistence.levelAvancement == 1) && (audioSoruceBackgroundMusic.activeInHierarchy == true))
+        {
+            resumeButton.interactable = false;
+        }
+        else if ((DataPersistence.instanceDataPersistence.levelAvancement > 1) && (audioSoruceBackgroundMusic.activeInHierarchy == true))
+        {
+            resumeButton.interactable = true;
+        }
     }
 
     //function that return 4 seconds of waiting for the coroutine.

@@ -4847,9 +4847,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: IntersitialAdsButton, Assembly-CSharp
-        m_MethodName: BackMenuVerifier
+      - m_Target: {fileID: 1648577341}
+        m_TargetAssemblyTypeName: FunctionAds, Assembly-CSharp
+        m_MethodName: BackMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4859,9 +4859,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RewardedAdsButton, Assembly-CSharp
-        m_MethodName: ShowAd
+      - m_Target: {fileID: 1648577343}
+        m_TargetAssemblyTypeName: OnClickButton, Assembly-CSharp
+        m_MethodName: BackMenuFunction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5144,18 +5144,6 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: OnClickButton, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -5545,9 +5533,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RewardedAdsButton, Assembly-CSharp
-        m_MethodName: ShowAd
+      - m_Target: {fileID: 1648577343}
+        m_TargetAssemblyTypeName: OnClickButton, Assembly-CSharp
+        m_MethodName: RewardAdsFunction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10546,7 +10534,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1648577340}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1477.0833, y: 1428.6715, z: -2.7574277}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10565,8 +10553,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: befee782b2ef3cb4183fac6cc896b0c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rewardedAdsButton: {fileID: 0}
-  interstitialAdsButton: {fileID: 0}
 --- !u!1 &1661953369
 GameObject:
   m_ObjectHideFlags: 0
@@ -14633,7 +14619,7 @@ PrefabInstance:
     - target: {fileID: 7632398462099255437, guid: 8721bddca90e7a74680abb8104e4dcf6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1648577343}
     - target: {fileID: 7632398462099255437, guid: 8721bddca90e7a74680abb8104e4dcf6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -14652,7 +14638,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7632398462099255437, guid: 8721bddca90e7a74680abb8104e4dcf6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: ShowAd
+      value: BackMenuFunction
       objectReference: {fileID: 0}
     - target: {fileID: 7632398462099255437, guid: 8721bddca90e7a74680abb8104e4dcf6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -14660,7 +14646,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7632398462099255437, guid: 8721bddca90e7a74680abb8104e4dcf6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: IntersitialAdsButton, Assembly-CSharp
+      value: OnClickButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7632398462099255437, guid: 8721bddca90e7a74680abb8104e4dcf6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
@@ -14693,7 +14679,7 @@ PrefabInstance:
     - target: {fileID: 7632398463438949017, guid: 8721bddca90e7a74680abb8104e4dcf6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1648577343}
     - target: {fileID: 7632398463438949017, guid: 8721bddca90e7a74680abb8104e4dcf6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -14712,7 +14698,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7632398463438949017, guid: 8721bddca90e7a74680abb8104e4dcf6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: ShowAd
+      value: NextLevel
       objectReference: {fileID: 0}
     - target: {fileID: 7632398463438949017, guid: 8721bddca90e7a74680abb8104e4dcf6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -14724,7 +14710,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7632398463438949017, guid: 8721bddca90e7a74680abb8104e4dcf6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: IntersitialAdsButton, Assembly-CSharp
+      value: OnClickButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7632398463438949017, guid: 8721bddca90e7a74680abb8104e4dcf6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName

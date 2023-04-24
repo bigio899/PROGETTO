@@ -45,6 +45,7 @@ public class IntersitialAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnity
     public void OnUnityAdsAdLoaded(string adUnitId)
     {
         // Optionally execute code if the Ad Unit successfully loads content.
+        Debug.Log("Loaded Intersitial Ad");
     }
 
     public void OnUnityAdsFailedToLoad(string _adUnitId, UnityAdsLoadError error, string message)
@@ -104,12 +105,12 @@ public class IntersitialAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnity
             backMenu.SetActive(true);
             SceneManager.LoadScene(0);
         }
-        /*else if ((GameObject.Find("nextLevelVerifier").activeInHierarchy == false) && (stringActualScene != "SampleScene"))
+        else if ((GameObject.Find("nextLevelVerifier").activeInHierarchy == false) && (stringActualScene != "SampleScene"))
         {
             GameObject.Find("nextLevelVerifier").SetActive(true);
             DataPersistence.instanceDataPersistence.levelAvancement = (numberActualScene + 1);
             SceneManager.LoadScene(numberActualScene + 1);
-        }*/
+        }
  
     }
 
