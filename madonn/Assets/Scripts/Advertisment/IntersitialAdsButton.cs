@@ -83,6 +83,7 @@ public class IntersitialAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnity
 
             ausiliar = 1;
             backMenu = GameObject.Find("backMenuVerifier");
+            nextLevelVerifier = GameObject.Find("nextLevelVerifier");
         }
 
         else if (stringActualScene == "Level1")
@@ -102,12 +103,14 @@ public class IntersitialAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnity
 
         if ((backMenu.activeSelf == false) && (stringActualScene != "SampleScene"))
         {
-            backMenu.SetActive(true);
+            backMenu.gameObject.SetActive(true);
             SceneManager.LoadScene(0);
         }
-        else if ((GameObject.Find("nextLevelVerifier").activeInHierarchy == false) && (stringActualScene != "SampleScene"))
+
+        else if ((nextLevelVerifier.activeSelf == false) && (stringActualScene != "SampleScene"))
         {
-            GameObject.Find("nextLevelVerifier").SetActive(true);
+            Debug.Log("nextLevelVerifier called correctly.");
+            nextLevelVerifier.SetActive(true);
             DataPersistence.instanceDataPersistence.levelAvancement = (numberActualScene + 1);
             SceneManager.LoadScene(numberActualScene + 1);
         }

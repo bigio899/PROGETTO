@@ -42,12 +42,6 @@ public class OptionsGameObject : MonoBehaviour
     //function that is performed when the player click the Resume button.
     public void ChangeSceneFromMenuToLevelAvancement()
     {
-        if (loadingSubScene.gameObject.activeInHierarchy != true)
-        {
-            loadingSubScene.gameObject.SetActive(true);
-        }
-        DataPersistence.instanceDataPersistence.LoadLevelAvancementFunction(); //load the persitence of the old session of play for recover the "levelavancement"variable value.
-        levelAvancement = DataPersistence.instanceDataPersistence.levelAvancement; //take the levelavancement value that is persisted by other sessions of play.
-        SceneManager.LoadScene(levelAvancement); //tthis line of code will open the scene of the level.
+        musicGameObject.gameObject.SetActive(false);
     }
 }

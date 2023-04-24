@@ -65,7 +65,7 @@ public class DataPersistence : MonoBehaviour
 
     private IEnumerator PersistenceAux()
     {
-        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(0.05f);
         gameObject.tag = "AuxPersistence";
     }
 }

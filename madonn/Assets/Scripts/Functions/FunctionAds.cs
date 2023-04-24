@@ -7,14 +7,14 @@ using UnityEngine.SceneManagement;
 public class FunctionAds : MonoBehaviour
 {
     //GAMEOBJECT TO DISACTIVE END LEVEL
-    [SerializeField] public GameObject endLevel;
-    [SerializeField] public GameObject gamebuttonText;
-    [SerializeField] public GameObject textAdvisePassedLevel;
-    [SerializeField] public Image keyIconImage; //variable where's comtained the icon of the key.
-    [SerializeField] public GameObject clickerButton;
-    [SerializeField] public GameObject backMenuFromPlaying;
-    [SerializeField] public GameObject timer;
-    [SerializeField] public GameObject batteryIcon;
+    public GameObject endLevel;
+    public GameObject gamebuttonText;
+    public GameObject textAdvisePassedLevel;
+    public Image keyIconImage; //variable where's comtained the icon of the key.
+    public GameObject clickerButton;
+    public GameObject backMenuFromPlaying;
+    public GameObject timer;
+    public GameObject batteryIcon;
 
     [SerializeField] public GameObject loadingSubScene;  //loading screen gameobject. 
 
@@ -37,7 +37,6 @@ public class FunctionAds : MonoBehaviour
         textAdvisePassedLevel.gameObject.SetActive(false);
 
         loadingSubScene.gameObject.SetActive(true);
-        CallLoadingFunctionAdvertisement();
     }
 
     //(LEVELS)function that starts if the player click on the "NextlevelButton".
@@ -53,15 +52,5 @@ public class FunctionAds : MonoBehaviour
         textAdvisePassedLevel.gameObject.SetActive(false);
 
         loadingSubScene.gameObject.SetActive(true);
-        CallLoadingFunctionAdvertisement();
-    }
-
-    private void CallLoadingFunctionAdvertisement()
-    {
-        IntersitialAdsButton interstitialAdsButton = GameObject.Find("Advertisement").GetComponent<IntersitialAdsButton>();
-        interstitialAdsButton.LoadAd();
-
-        RewardedAdsButton rewardedAdsButton = GameObject.Find("Advertisement").GetComponent<RewardedAdsButton>();
-        rewardedAdsButton.LoadAd();
     }
 }

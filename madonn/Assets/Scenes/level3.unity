@@ -7461,6 +7461,7 @@ MonoBehaviour:
   ausiliarAddingTimeGameManager: {fileID: 247272009}
   loadingSubScene: {fileID: 979062551}
   gameButtons: {fileID: 1115578683}
+  pauseButton: {fileID: 1919388440}
   countdownTextUI: {fileID: 1677965397}
   failureLevelAdviseUI: {fileID: 853405889}
   valueTimeForCountdown: 0

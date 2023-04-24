@@ -71,7 +71,6 @@ public class GrabbingObject : MonoBehaviour
 
     //level2 variables
     [SerializeField] private GameObject padlockGameObjectTransition;  //this padlock is used for close the door of the mine.
-    private int ausiliarCoroutineVariable2 = 0;
 
     //gameobjects that contains fixed jostick, clicker button and button.(ALLTHE CANVAS)
     [SerializeField] private GameObject loadingSubScene;  //loading screen gameobject. 
@@ -163,17 +162,6 @@ public class GrabbingObject : MonoBehaviour
         {
             timerAusiliarGOLengthLifeOfBattery.gameObject.SetActive(acceptedTransition); //the ausiliar gameobject is actived for verifiy to "batteryiconscript" that the coroutine is started.
             isBatteryStarted = false;
-        }
-
-        if(ausiliarCoroutineVariable2 == 1) //if the second level is passed
-        {
-            if (loadingSubScene.gameObject.activeInHierarchy != true) //if the loading scene isn't already started
-            {
-                loadingSubScene.gameObject.SetActive(true);
-                pauseSubScene.gameObject.SetActive(false); textAndButtons.gameObject.SetActive(false); // disactive all the canvas(excluding zero).
-            }
-            SceneManager.LoadScene(3); //load the third level.
-            DataPersistence.instanceDataPersistence.levelAvancement = 3; //data persistence level advance 3
         }
     }
 

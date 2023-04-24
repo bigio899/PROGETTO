@@ -30,6 +30,7 @@ public class GameManager1 : MonoBehaviour
     //declaration gameobjects's variables 
     [SerializeField] private GameObject loadingSubScene;  //loading screen gameobject. 
     [SerializeField] private GameObject gameButtons; //buttons in the menu gameobjects.
+    public GameObject pauseButton;
 
     //variables that are used for the countdown.
     [SerializeField] private TextMeshProUGUI countdownTextUI; //countdown timer text.
@@ -47,6 +48,9 @@ public class GameManager1 : MonoBehaviour
     //Tips GameObjects.
     [SerializeField] private GameObject[] tipsGameObjects;
 
+    //ausiliar
+    private bool ausiliar = false;
+
     // Start is called before the first frame update.
     void Start()
     {
@@ -57,7 +61,6 @@ public class GameManager1 : MonoBehaviour
         Debug.Log(nameOftheCurrentScene);
         if (nameOftheCurrentScene == nameFirstLevelScene) //if the scene is Level1
         {
-            CallLoadingFunctionAdvertisement();
 
             valueTimeForCountdown = 359.00f; //set the start value of the timer to 6 minutes.
             levelNumber = 1;
@@ -67,7 +70,6 @@ public class GameManager1 : MonoBehaviour
 
         else if (nameOftheCurrentScene == nameSecondLevelScene) //if the scene is Level2
         {
-            CallLoadingFunctionAdvertisement();
 
             valueTimeForCountdown = 539.00f; //set the start value of the timer to 9 minutes.
             levelNumber = 2;
@@ -77,7 +79,6 @@ public class GameManager1 : MonoBehaviour
 
         else if (nameOftheCurrentScene == nameThirdLevelScene) // if the scene is Level3
         {
-            CallLoadingFunctionAdvertisement();
 
             valueTimeForCountdown = 599.00f; //set the start value of the timer to 10 minutes. 
             levelNumber = 3;
@@ -86,7 +87,6 @@ public class GameManager1 : MonoBehaviour
         }
         else if (nameOftheCurrentScene == nameFourthLevelScene) // if the scene is level4
         {
-            CallLoadingFunctionAdvertisement();
 
             valueTimeForCountdown = 599.00f; //set the start value of the timer to 10 minutes.
             levelNumber = 4;
@@ -122,8 +122,13 @@ public class GameManager1 : MonoBehaviour
 
         if ((ausiliarSecondFrameVideo == true) && (!introductionChapterVideosource.isPlaying)) //if the loading sub-scene is complete, this part of script make time(used for the timer) pass. 
         {
-            gameButtons.gameObject.SetActive(true);  //buttons of the scene are visible.
-            countdownTextUI.gameObject.SetActive(true);   //the timer is actived.
+            if (ausiliar == false) //only the first frame esecute these lines of code.
+            {
+                ausiliar = true;
+                CallLoadingFunctionAdvertisement();
+                gameButtons.gameObject.SetActive(true);  //buttons of the scene are visible.
+                countdownTextUI.gameObject.SetActive(true);   //the timer is actived.
+            }
 
             if ((valueTimeForCountdown > 0) && (ausiliarG03TimerStop.gameObject.activeSelf == false)) //if the time(in deltatime value) is major than zero
             {
@@ -291,6 +296,7 @@ public class GameManager1 : MonoBehaviour
         ausiliarGO1Look.gameObject.SetActive(true); //block of the movement input from the player.
         ausiliarGO2Move.gameObject.SetActive(true); //block of the looking visual input from the player.
         ausiliarG03TimerStop.gameObject.SetActive(true); //block of the timer value.
+        pauseButton.gameObject.SetActive(false);
     }
 
     //Function called when the player resume the game from the pause.
@@ -299,6 +305,7 @@ public class GameManager1 : MonoBehaviour
         ausiliarGO1Look.gameObject.SetActive(false); //sblock of the movement input from the player.
         ausiliarGO2Move.gameObject.SetActive(false); //sblock of the looking visual input from the player.
         ausiliarG03TimerStop.gameObject.SetActive(false); //sblock of the timer value.
+        pauseButton.gameObject.SetActive(true);
     }
 
     private void CallLoadingFunctionAdvertisement()
