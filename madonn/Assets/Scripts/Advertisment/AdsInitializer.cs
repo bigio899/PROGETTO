@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Advertisements;
+using UnityEngine.SceneManagement;
 
 public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener
 {
@@ -8,10 +9,14 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener
     [SerializeField] bool _testMode = true;
     private string _gameId;
 
-    [SerializeField] RewardedAdsButton rewardedAdsButton; //reference of rewarded button script.
-    [SerializeField] IntersitialAdsButton interstitialAdsButton; //reference of intersitial button script.
+    public RewardedAdsButton rewardedAdsButton; //reference of rewarded button script.
+    public IntersitialAdsButton interstitialAdsButton; //reference of intersitial button script.
+
+
     void Awake()
     {
+        rewardedAdsButton = GameObject.Find("Advertisement").GetComponent<RewardedAdsButton>();
+        interstitialAdsButton = GameObject.Find("Advertisement").GetComponent<IntersitialAdsButton>();
         InitializeAds(); //function that initialize the advertisement tool.
     }
 

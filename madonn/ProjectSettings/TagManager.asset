@@ -12,6 +12,7 @@ TagManager:
   - Pickuppable
   - AuxPersistence
   - Persistence
+  - Added
   layers:
   - Default
   - TransparentFX

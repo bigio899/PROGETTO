@@ -7,8 +7,11 @@ public class DataPersistence : MonoBehaviour
 {
     //instance of the class variable.
     public static DataPersistence instanceDataPersistence; //Instance of the "DataPersistence" class.This class is static.
+
     //persistent variables
     public int levelAvancement = 1;
+    public AdsInitializer initializer;
+
     //Awake function(called the first frame after that the gameobject "DataPersistenceGO" is created).
     private void Awake()
     {

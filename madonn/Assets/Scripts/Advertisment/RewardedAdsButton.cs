@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Advertisements;
+using UnityEngine.SceneManagement;
+
 public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
 {
     [SerializeField] string _androidAdUnitId = "Rewarded_Android";
@@ -8,9 +10,9 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     string _adUnitId = null; // This will remain null for unsupported platforms
 
     //ausiliar gameobjects.
-    [SerializeField] private GameObject ausiliarGO1Look; //gameobject used for block the camera movement. 
-    [SerializeField] private GameObject ausiliarGO2Move;  //gameobject used for block the player movement.
-    [SerializeField] private GameObject ausiliarAddingTimeGameManager; //gameobject used for add time to the gamemanager.
+    [SerializeField] public GameObject ausiliarGO1Look; //gameobject used for block the camera movement. 
+    [SerializeField] public GameObject ausiliarGO2Move;  //gameobject used for block the player movement.
+    [SerializeField] public GameObject ausiliarAddingTimeGameManager; //gameobject used for add time to the gamemanager.
 
     //Awake function
     void Awake()
@@ -21,7 +23,6 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
 #elif UNITY_ANDROID
         _adUnitId = _androidAdUnitId;
 #endif
-
     }
 
     // Load content to the Ad Unit:
@@ -57,7 +58,6 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
             ausiliarGO2Move.gameObject.SetActive(false);
             ausiliarAddingTimeGameManager.gameObject.SetActive(true);
             Debug.Log("You've gained another seconds for finish the level.");
-            Destroy(this.gameObject);
         }
     }
 
