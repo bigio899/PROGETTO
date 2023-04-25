@@ -81,7 +81,7 @@ public class GrabbingObject : MonoBehaviour
     private string nameOftheCurrentScene;
 
     //end level variables gameobjects 
-    [SerializeField] private GameObject endLevelGO; 
+    [SerializeField] private GameObject endLevelGO; //variable that is used for active and disactive the endlevel menu. 
 
     // Start function is called before the first frame update.(MAIN)
     private void Start()
@@ -163,8 +163,11 @@ public class GrabbingObject : MonoBehaviour
             timerAusiliarGOLengthLifeOfBattery.gameObject.SetActive(acceptedTransition); //the ausiliar gameobject is actived for verifiy to "batteryiconscript" that the coroutine is started.
             isBatteryStarted = false;
         }
+        if(counterClickerButtonAusiliarVar.gameObject.activeSelf)
+        {
+            StartCoroutine(TimeOfClicking());
+        }
     }
-
     //function that is called when the player triggerer trigger with another gameobject with a box collider marked like trigger.this function is called from the second frame after the trigger.
     private void OnTriggerStay(Collider other)
     {
@@ -349,6 +352,12 @@ public class GrabbingObject : MonoBehaviour
         hasAlreadyBatteryText = true;
     }
 
+    //this function is used for mantain active the click only for 0.15 seconds.
+    private IEnumerator TimeOfClicking()
+    {
+        yield return new WaitForSeconds(0.15f);
+        counterClickerButtonAusiliarVar.gameObject.SetActive(false);
+    }
     //---------------------
     //LEVEL1!
     //+
@@ -378,6 +387,7 @@ public class GrabbingObject : MonoBehaviour
                 doorBunkerOpeningTextAdvise.gameObject.SetActive(acceptedTransition);  // the text that inform the player who's opening the bunker door is sected to active.
                 StartCoroutine(TimeOfViewingOpeningDoorBunkerText()); // start of 4 seconds of coroutine
                 isKeyGrabbedToThePlayer = false;
+                other.gameObject.SetActive(false);
             }
             else  //if the player doesn't have the key 
             {
@@ -387,7 +397,6 @@ public class GrabbingObject : MonoBehaviour
                     StartCoroutine(TimeOfViewingMissingKeyText()); //start of 5 seconds of coroutine
                 }
             }
-            other.gameObject.SetActive(false);
         }
 
         //end level trigger level1

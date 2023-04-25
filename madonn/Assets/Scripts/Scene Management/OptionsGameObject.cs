@@ -4,8 +4,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class OptionsGameObject : MonoBehaviour
 {
-    //declaration variables.
-    private int levelAvancement = 1; //declaration of the varfiable where is allocated the date of level's avancement.
     //declaration gameobjects's variables
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private GameObject mainMenu;
@@ -19,6 +17,10 @@ public class OptionsGameObject : MonoBehaviour
     //variable that is used to contain the loading subscene.
     [SerializeField] private GameObject loadingSubScene;  //loading screen gameobject. 
 
+    private void Start()
+    {
+        DataPersistence.instanceDataPersistence.LoadLevelAvancementFunction();
+    }
     //function that is performed when the player click the Option button. 
     public void OnClickOptionButton()
     {
@@ -37,6 +39,8 @@ public class OptionsGameObject : MonoBehaviour
     public void ChangeSceneFromMenuToLevelOne()
     {
         musicGameObject.gameObject.SetActive(false);
+        DataPersistence.instanceDataPersistence.levelAvancement = 1;
+        DataPersistence.instanceDataPersistence.SaveLevelAvancementFunction();
     }
 
     //function that is performed when the player click the Resume button.
