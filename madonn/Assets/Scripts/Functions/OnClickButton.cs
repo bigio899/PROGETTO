@@ -16,6 +16,7 @@ public class OnClickButton : MonoBehaviour
     public void RewardAdsFunction()
     {
         RewardedAdsButton rewardAdsFunction = GameObject.Find("Advertisement").GetComponent<RewardedAdsButton>();
+        GameObject.Find("FailureMenu").SetActive(false);
         rewardAdsFunction.ShowAd();
         rewardAdsFunction.LoadAd();
     }

@@ -23,7 +23,6 @@ public class GameManager1 : MonoBehaviour
     [SerializeField] private GameObject ausiliarGO2Move;  //gameobject used for block the player movement.
     [SerializeField] private GameObject ausiliarG03TimerStop; //gameobject used to verify that the player have ended the level and the timer must be stopped.
     [SerializeField] private GameObject ausiliarAddingTimeGameManager; //gameobject used for add time to the gamemanager.
-
     //declaration variables.
     private int levelNumber = 0; //this variable is used to identify the level and load the scene of the relative level if the time ends. 
 
@@ -96,12 +95,12 @@ public class GameManager1 : MonoBehaviour
     }
     private void Update()
     {
-        if (ausiliarAddingTimeGameManager.gameObject.activeSelf == true) //ausiliar gameobject used for add time to the gamemanager.
+        if (ausiliarAddingTimeGameManager.gameObject.activeSelf == false) //ausiliar gameobject used for add time to the gamemanager.
         {
             CallLoadingFunctionAdvertisement();
 
             valueTimeForCountdown = 89.0f; //set the value of the timer to 1.30 minutes. 
-            ausiliarAddingTimeGameManager.gameObject.SetActive(false);
+            ausiliarAddingTimeGameManager.gameObject.SetActive(true);
         }
 
         //ausiliar condition used for the first frame. 
@@ -241,31 +240,32 @@ public class GameManager1 : MonoBehaviour
                    StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[3])); //15 seconds of visualization
                }
            }
-           /* else if (levelNumber == 4) //TIPS LEVEL4
-           {
-               //Visualizing all the tips
-               if ((minutesOfCountdown == ) && (secondsOfCountdown == )) //tip1
-               {
-                   tipsGameObjects[0].gameObject.SetActive(true); //text active
-                   StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[0])); //15 seconds of visualization
-               }
-               else if ((minutesOfCountdown == ) && (secondsOfCountdown == )) //tip2
-               {
-                   tipsGameObjects[1].gameObject.SetActive(true); //text active
-                   StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[1])); //15 seconds of visualization
-               }
-               else if ((minutesOfCountdown == ) && (secondsOfCountdown == )) //tip3
-               {
-                   tipsGameObjects[2].gameObject.SetActive(true); //text active
-                   StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[2])); //15 seconds of visualization
-               }
-               else if ((minutesOfCountdown == ) && (secondsOfCountdown == )) //tip4
-               {
-                   tipsGameObjects[3].gameObject.SetActive(true); //text active 
-                   StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[3])); //15 seconds of visualization
-               }
-           }
-       } */
+            /* else if (levelNumber == 4) //TIPS LEVEL4
+            {
+                //Visualizing all the tips
+                if ((minutesOfCountdown == ) && (secondsOfCountdown == )) //tip1
+                {
+                    tipsGameObjects[0].gameObject.SetActive(true); //text active
+                    StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[0])); //15 seconds of visualization
+                }
+                else if ((minutesOfCountdown == ) && (secondsOfCountdown == )) //tip2
+                {
+                    tipsGameObjects[1].gameObject.SetActive(true); //text active
+                    StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[1])); //15 seconds of visualization
+                }
+                else if ((minutesOfCountdown == ) && (secondsOfCountdown == )) //tip3
+                {
+                    tipsGameObjects[2].gameObject.SetActive(true); //text active
+                    StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[2])); //15 seconds of visualization
+                }
+                else if ((minutesOfCountdown == ) && (secondsOfCountdown == )) //tip4
+                {
+                    tipsGameObjects[3].gameObject.SetActive(true); //text active 
+                    StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[3])); //15 seconds of visualization
+                }
+            }
+        } */
+
             if ((valueTimeForCountdown > 0) && (ausiliarG03TimerStop.gameObject.activeInHierarchy == true)) //if the level is passed successfully
             {
                 countdownTextUI.color = Color.green; //the color of the timer text will be setted to green.
