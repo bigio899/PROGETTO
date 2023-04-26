@@ -86,12 +86,11 @@ public class GrabbingObject : MonoBehaviour
 
     //Level3 CardElevator Variables.
     private bool hasTheCardForElevator; //this variable is used to know that the player has grabbed the card for the elevator. 
+    [SerializeField] private TextMeshProUGUI hasActivedElettricityText;
+    private bool hasOpenedElettricity = false;
     // Start function is called before the first frame update.(MAIN)
     private void Start()
     {
-        keyIconImage.gameObject.SetActive(rejectedTransition); keyGrabbedTextAdvise.gameObject.SetActive(rejectedTransition);
-        batteryGrabbedTextAdvise.gameObject.SetActive(rejectedTransition);
-        alreadyHasTheBatteryTextAdvise.gameObject.SetActive(rejectedTransition);
         levelPassedTextAdvise.gameObject.SetActive(rejectedTransition);
         loadingSubScene.gameObject.SetActive(false); pauseSubScene.gameObject.SetActive(false);
 
@@ -103,18 +102,25 @@ public class GrabbingObject : MonoBehaviour
     {
         if ((nameOftheCurrentScene == "Level1"))
         {
+            //active the sound of opening bunker. 
             if ((bunkerSoundEffect.GetComponent<AudioSource>().isPlaying == true) && (auxJumpscareUpdateMethod == false))
             {
                 StartCoroutine(JumpScareLevel1());
                 auxJumpscareUpdateMethod = true;
             }
+            //when the bunker sound opening is ended, start the jumpsacre sound coroutine.
             else if ((areDoorsFixed == true) && (bunkerSoundEffect.GetComponent<AudioSource>().isPlaying == false))
             {
                 bunkerSoundEffect.gameObject.SetActive(false); //disactive the sound of the bunker's opening.
                 StartCoroutine(JumpScareLevel1()); //start coroutine that set the active status of the jumpscare.
             }
         }
+        else if ((nameOftheCurrentScene == "Level3") && (hasOpenedElettricity == true))
+        {
 
+        }
+
+        //condition that active the jumpscare sound.
         if (ausiliarJumpScare == true)
         {
             jumpScareSoundEffect.gameObject.SetActive(true);
@@ -253,6 +259,23 @@ public class GrabbingObject : MonoBehaviour
 
                 }
             }
+
+            if (other.gameObject.CompareTag("CardElevator"))
+            {
+                Debug.Log("card elevator picked");
+                other.gameObject.SetActive(false);
+                hasTheCardForElevator = true;
+                keyGrabbedTextAdvise.gameObject.SetActive(true);
+                StartCoroutine(TimeOfViewingKeyText());
+            }
+
+            if (other.gameObject.CompareTag("Elettricity"))
+            {
+                hasActivedElettricityText.gameObject.SetActive(true);
+                StartCoroutine(ElettricityViewingTextAdviseCoroutine());
+                hasOpenedElettricity = true;
+            }
+
             counterClickerButtonAusiliarVar.gameObject.SetActive(false);
         }
     }
@@ -304,7 +327,7 @@ public class GrabbingObject : MonoBehaviour
     //coroutine for don't have bugs for the key with the opening of both the doors.
     private IEnumerator JumpScareLevel1()
     {
-        yield return (new WaitForSeconds(5.6f));
+        yield return (new WaitForSeconds(4.0f));
         ausiliarJumpScare = true;
         auxJumpscareUpdateMethod = false;
     }
@@ -453,14 +476,7 @@ public class GrabbingObject : MonoBehaviour
     //level3 triggerer active function.
     private void Level3FunctionTriggerer(Collider other)
     {
-        if (other.gameObject.CompareTag("CardElevator"))
-        {
-            other.gameObject.SetActive(false);
-            hasTheCardForElevator = true;
-            keyGrabbedTextAdvise.gameObject.SetActive(true);
-            StartCoroutine(TimeOfViewingKeyText());
-        }
-        else if ((other.gameObject.CompareTag("Elevator")) && (hasTheCardForElevator == true))
+        if ((other.gameObject.CompareTag("Elevator")) && (hasTheCardForElevator == true))
         {
             Debug.Log("level Passed Successfully!");
             levelPassedTextAdvise.gameObject.SetActive(true); //level passed advise text.
@@ -472,6 +488,11 @@ public class GrabbingObject : MonoBehaviour
         }
     }
 
+    private IEnumerator ElettricityViewingTextAdviseCoroutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        hasActivedElettricityText.gameObject.SetActive(false);
+    }
 
     //----------------------
     //LEVEL4!

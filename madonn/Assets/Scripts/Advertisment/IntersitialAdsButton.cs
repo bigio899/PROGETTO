@@ -14,9 +14,9 @@ public class IntersitialAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnity
 
     private GameObject backMenu;
     private GameObject nextLevelVerifier;
-    //ausiliar
-    private int ausiliar = 0;
 
+    //ausiliar
+    public int ausiliarMenu = 2; 
     void Awake()
     {
         // Get the Ad Unit ID for the current platform:
@@ -67,21 +67,19 @@ public class IntersitialAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnity
     public void OnUnityAdsShowComplete(string _adUnitId, UnityAdsShowCompletionState showCompletionState) 
     {
         stringActualScene = SceneManager.GetActiveScene().name; //get the name of the scene in esecution. 
+        DataPersistence.instanceDataPersistence.LoadLevelAvancementFunction();
         if (stringActualScene == "SampleScene")
         {
             numberActualScene = 0; //menu.
-            if (GameObject.Find("isPlayButton").activeInHierarchy == true)
+            if (ausiliarMenu == 1)
             {
-                GameObject.Find("isPlayButton").SetActive(false);
                 SceneManager.LoadScene(1); //load the level 1 scene.
             }
-            else if (GameObject.Find("isResumeButton") == true)
+            if (ausiliarMenu == 2)
             {
-                GameObject.Find("isResumeButton").SetActive(false);
+                Debug.Log("Ausiliar Bug Advise.");
                 SceneManager.LoadScene(DataPersistence.instanceDataPersistence.levelAvancement);
             }
-
-            ausiliar = 1;
             backMenu = GameObject.Find("backMenuVerifier");
             nextLevelVerifier = GameObject.Find("nextLevelVerifier");
         }
@@ -117,4 +115,13 @@ public class IntersitialAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnity
  
     }
 
+    public void PlayButtonClicked()
+    {
+        ausiliarMenu = 1;
+    }
+
+    public void ResumeButtonClicked()
+    {
+        ausiliarMenu = 2; 
+    }
 }

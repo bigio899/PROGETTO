@@ -10093,7 +10093,7 @@ Light:
   m_CookieSize: 10
   m_Shadows:
     m_Type: 1
-    m_Resolution: 3
+    m_Resolution: 1
     m_CustomResolution: -1
     m_Strength: 1
     m_Bias: 0.39
@@ -10921,11 +10921,11 @@ PrefabInstance:
     - target: {fileID: 4676229736997716967, guid: 597dbf8cbc218e547b0c142059eb6338, type: 3}
       propertyPath: failureLevelAdviseUI
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 127588392}
     - target: {fileID: 4676229736997716967, guid: 597dbf8cbc218e547b0c142059eb6338, type: 3}
       propertyPath: failureMenuUtilitiesVar
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 590313353}
     - target: {fileID: 4676229736997716967, guid: 597dbf8cbc218e547b0c142059eb6338, type: 3}
       propertyPath: tipsGameObjects.Array.size
       value: 4

@@ -47,5 +47,6 @@ public class OptionsGameObject : MonoBehaviour
     public void ChangeSceneFromMenuToLevelAvancement()
     {
         musicGameObject.gameObject.SetActive(false);
+        DataPersistence.instanceDataPersistence.SaveLevelAvancementFunction();
     }
 }

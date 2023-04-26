@@ -219,22 +219,22 @@ public class GameManager1 : MonoBehaviour
             else if (levelNumber == 3) //TIPS LEVEL3
            {
                //Visualizing all the tips
-               if ((minutesOfCountdown == 8) && (secondsOfCountdown == 31)) //tip1
+               if ((minutesOfCountdown == 9) && (secondsOfCountdown == 41)) //tip1
                {
                    tipsGameObjects[0].gameObject.SetActive(true); //text active
                    StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[0])); //15 seconds of visualization
                }
-               else if ((minutesOfCountdown == 6) && (secondsOfCountdown == 01)) //tip2
+               else if ((minutesOfCountdown == 7) && (secondsOfCountdown == 41)) //tip2
                {
                    tipsGameObjects[1].gameObject.SetActive(true); //text active
                    StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[1])); //15 seconds of visualization
                }
-               else if ((minutesOfCountdown == 4) && (secondsOfCountdown == 01)) //tip3
+               else if ((minutesOfCountdown == 5) && (secondsOfCountdown == 01)) //tip3
                {
                    tipsGameObjects[2].gameObject.SetActive(true); //text active
                    StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[2])); //15 seconds of visualization
                }
-               else if ((minutesOfCountdown == 2) && (secondsOfCountdown == 01)) //tip4
+               else if ((minutesOfCountdown == 2) && (secondsOfCountdown == 31)) //tip4
                {
                    tipsGameObjects[3].gameObject.SetActive(true); //text active 
                    StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[3])); //15 seconds of visualization
