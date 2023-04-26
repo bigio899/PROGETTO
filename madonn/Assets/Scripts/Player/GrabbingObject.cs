@@ -40,6 +40,7 @@ public class GrabbingObject : MonoBehaviour
     private bool isBatteryGrabbed = false; //boolean where's contained the information about the grabbing or not of the battery
     private bool hasAlreadyBatteryText = false; //boolean where's contained the information about the text advise "hasAlreadyBatteryGrabbed".
     private bool ausiliarJumpScare = false; // boolean where's contained the information about the Jumpscare status.
+    private bool auxJumpscareUpdateMethod = false;
 
     //door bug variables.
     private int ausiliarVarBunkerDoor = 0; //ausiliar variable that is used for
@@ -83,11 +84,12 @@ public class GrabbingObject : MonoBehaviour
     //end level variables gameobjects 
     [SerializeField] private GameObject endLevelGO; //variable that is used for active and disactive the endlevel menu. 
 
+    //Level3 CardElevator Variables.
+    private bool hasTheCardForElevator; //this variable is used to know that the player has grabbed the card for the elevator. 
     // Start function is called before the first frame update.(MAIN)
     private void Start()
     {
         keyIconImage.gameObject.SetActive(rejectedTransition); keyGrabbedTextAdvise.gameObject.SetActive(rejectedTransition);
-        lightTorchGameObject.gameObject.SetActive(rejectedTransition);
         batteryGrabbedTextAdvise.gameObject.SetActive(rejectedTransition);
         alreadyHasTheBatteryTextAdvise.gameObject.SetActive(rejectedTransition);
         levelPassedTextAdvise.gameObject.SetActive(rejectedTransition);
@@ -99,11 +101,18 @@ public class GrabbingObject : MonoBehaviour
     // Update function is called once per frame(MAIN2)
     private void Update()
     {
-
-        if ((areDoorsFixed == true) && (bunkerSoundEffect.GetComponent<AudioSource>().isPlaying == false))
+        if ((nameOftheCurrentScene == "Level1"))
         {
-            bunkerSoundEffect.gameObject.SetActive(false); //disactive the sound of the bunker's opening.
-            StartCoroutine(JumpScareLevel1()); //start coroutine that set the active status of the jumpscare.
+            if ((bunkerSoundEffect.GetComponent<AudioSource>().isPlaying == true) && (auxJumpscareUpdateMethod == false))
+            {
+                StartCoroutine(JumpScareLevel1());
+                auxJumpscareUpdateMethod = true;
+            }
+            else if ((areDoorsFixed == true) && (bunkerSoundEffect.GetComponent<AudioSource>().isPlaying == false))
+            {
+                bunkerSoundEffect.gameObject.SetActive(false); //disactive the sound of the bunker's opening.
+                StartCoroutine(JumpScareLevel1()); //start coroutine that set the active status of the jumpscare.
+            }
         }
 
         if (ausiliarJumpScare == true)
@@ -295,8 +304,9 @@ public class GrabbingObject : MonoBehaviour
     //coroutine for don't have bugs for the key with the opening of both the doors.
     private IEnumerator JumpScareLevel1()
     {
-        yield return (new WaitForSeconds(1.5f));
+        yield return (new WaitForSeconds(5.6f));
         ausiliarJumpScare = true;
+        auxJumpscareUpdateMethod = false;
     }
 
     //this function is used for set open the door.
@@ -443,7 +453,23 @@ public class GrabbingObject : MonoBehaviour
     //level3 triggerer active function.
     private void Level3FunctionTriggerer(Collider other)
     {
-
+        if (other.gameObject.CompareTag("CardElevator"))
+        {
+            other.gameObject.SetActive(false);
+            hasTheCardForElevator = true;
+            keyGrabbedTextAdvise.gameObject.SetActive(true);
+            StartCoroutine(TimeOfViewingKeyText());
+        }
+        else if ((other.gameObject.CompareTag("Elevator")) && (hasTheCardForElevator == true))
+        {
+            Debug.Log("level Passed Successfully!");
+            levelPassedTextAdvise.gameObject.SetActive(true); //level passed advise text.
+            textAndButtons.gameObject.SetActive(false); // disactive the buttons(invisible).
+            endLevelGO.gameObject.SetActive(true); //actove the menu for change the level.
+            ausiliarGO1Look.gameObject.SetActive(acceptedTransition); //block of the movement input from the player.
+            ausiliarGO2Move.gameObject.SetActive(acceptedTransition); //block of the looking visual input from the player.
+            ausiliarGO03TimerStop.gameObject.SetActive(acceptedTransition); //block of the timer value.
+        }
     }
 
 
