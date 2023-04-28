@@ -26,6 +26,7 @@ public class GrabbingObject : MonoBehaviour
     [SerializeField] private Animator firstbunkerDoorAnimationOpening; //variable where's contained the first BunkerDoor Animator, used for working with conditions and parameters.
     [SerializeField] private Animator secondBunkerDoorAnimationOpening; //variable where's contained the second BunkerDoor Animator, used for working with conditions and parameters.
     [SerializeField] private Animator[] DrawersOpeningAndClosingAnimator; //variable where are contained the Drawer Animators, used for working with conditions and parameters.
+    [SerializeField] private Animator doorLevel2;
 
     //lights of the flashlight gameobject variable.
     [SerializeField] private GameObject lightTorchGameObject; //variable where's contained the light of the torch.
@@ -260,22 +261,6 @@ public class GrabbingObject : MonoBehaviour
                 }
             }
 
-            if (other.gameObject.CompareTag("CardElevator"))
-            {
-                Debug.Log("card elevator picked");
-                other.gameObject.SetActive(false);
-                hasTheCardForElevator = true;
-                keyGrabbedTextAdvise.gameObject.SetActive(true);
-                StartCoroutine(TimeOfViewingKeyText());
-            }
-
-            if (other.gameObject.CompareTag("Elettricity"))
-            {
-                hasActivedElettricityText.gameObject.SetActive(true);
-                StartCoroutine(ElettricityViewingTextAdviseCoroutine());
-                hasOpenedElettricity = true;
-            }
-
             counterClickerButtonAusiliarVar.gameObject.SetActive(false);
         }
     }
@@ -466,6 +451,18 @@ public class GrabbingObject : MonoBehaviour
             ausiliarGO2Move.gameObject.SetActive(acceptedTransition); //block of the looking visual input from the player.
             ausiliarGO03TimerStop.gameObject.SetActive(acceptedTransition); //block of the timer value.
         }
+        
+        if (other.gameObject.CompareTag("ExitFirstHouseLevel2") && (isKeyGrabbedToThePlayer == true))
+        {
+            Debug.Log("ExitLevel2 Called Tag");
+            doorBunkerOpeningTextAdvise.gameObject.SetActive(acceptedTransition);
+            StartCoroutine(TimeOfViewingOpeningDoorBunkerText()); // start of 4 seconds of coroutine
+            lightTorchGameObject.gameObject.SetActive(true);
+            doorLevel2.SetBool("IsActived", true);
+            isKeyGrabbedToThePlayer = false;
+            other.gameObject.tag = "Untagged";
+        }
+        
     }
 
 
@@ -485,6 +482,26 @@ public class GrabbingObject : MonoBehaviour
             ausiliarGO1Look.gameObject.SetActive(acceptedTransition); //block of the movement input from the player.
             ausiliarGO2Move.gameObject.SetActive(acceptedTransition); //block of the looking visual input from the player.
             ausiliarGO03TimerStop.gameObject.SetActive(acceptedTransition); //block of the timer value.
+        }
+
+        if (counterClickerButtonAusiliarVar.gameObject.activeSelf == true)
+        {
+            if (other.gameObject.CompareTag("CardElevator"))
+            {
+                Debug.Log("card elevator picked");
+                other.gameObject.SetActive(false);
+                hasTheCardForElevator = true;
+                keyGrabbedTextAdvise.gameObject.SetActive(true);
+                StartCoroutine(TimeOfViewingKeyText());
+            }
+
+            if (other.gameObject.CompareTag("Elettricity"))
+            {
+                hasActivedElettricityText.gameObject.SetActive(true);
+                StartCoroutine(ElettricityViewingTextAdviseCoroutine());
+                hasOpenedElettricity = true;
+            }
+            counterClickerButtonAusiliarVar.gameObject.SetActive(false);
         }
     }
 

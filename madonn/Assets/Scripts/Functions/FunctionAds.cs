@@ -14,7 +14,6 @@ public class FunctionAds : MonoBehaviour
     public GameObject clickerButton;
     public GameObject backMenuFromPlaying;
     public GameObject timer;
-    public GameObject batteryIcon;
 
     [SerializeField] public GameObject loadingSubScene;  //loading screen gameobject. 
 
@@ -29,7 +28,6 @@ public class FunctionAds : MonoBehaviour
     {
         clickerButton.gameObject.SetActive(false);
         timer.gameObject.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
-        batteryIcon.gameObject.SetActive(false);
         backMenuFromPlaying.gameObject.SetActive(false);
         keyIconImage.gameObject.SetActive(false);
         endLevel.gameObject.SetActive(false);
@@ -44,7 +42,6 @@ public class FunctionAds : MonoBehaviour
     {
         clickerButton.gameObject.SetActive(false);
         timer.gameObject.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
-        batteryIcon.gameObject.SetActive(false);
         backMenuFromPlaying.gameObject.SetActive(false);
         keyIconImage.gameObject.SetActive(false);
         endLevel.gameObject.SetActive(false);
