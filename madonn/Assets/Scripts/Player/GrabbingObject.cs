@@ -116,10 +116,10 @@ public class GrabbingObject : MonoBehaviour
                 StartCoroutine(JumpScareLevel1()); //start coroutine that set the active status of the jumpscare.
             }
         }
-        else if ((nameOftheCurrentScene == "Level3") && (hasOpenedElettricity == true))
-        {
+      //  else if ((nameOftheCurrentScene == "level3") && (hasOpenedElettricity == true))
+       // {
 
-        }
+        //}
 
         //condition that active the jumpscare sound.
         if (ausiliarJumpScare == true)
@@ -179,6 +179,7 @@ public class GrabbingObject : MonoBehaviour
             timerAusiliarGOLengthLifeOfBattery.gameObject.SetActive(acceptedTransition); //the ausiliar gameobject is actived for verifiy to "batteryiconscript" that the coroutine is started.
             isBatteryStarted = false;
         }
+
         if(counterClickerButtonAusiliarVar.gameObject.activeSelf)
         {
             StartCoroutine(TimeOfClicking());
@@ -261,6 +262,15 @@ public class GrabbingObject : MonoBehaviour
                 }
             }
 
+            if (other.gameObject.CompareTag("CardElevator"))
+            {
+                Debug.Log("card elevator picked");
+                hasTheCardForElevator = true;
+                keyGrabbedTextAdvise.gameObject.SetActive(true);
+                StartCoroutine(TimeOfViewingKeyText());
+                other.gameObject.SetActive(false);
+            }
+
             counterClickerButtonAusiliarVar.gameObject.SetActive(false);
         }
     }
@@ -276,8 +286,9 @@ public class GrabbingObject : MonoBehaviour
         {
             Level2FunctionTriggerer(other); //call the function triggerer of the second level.
         }
-        else if(nameOftheCurrentScene == "Level3") //if the scene is on the third level
+        else if(nameOftheCurrentScene == "level3") //if the scene is on the third level
         {
+            Debug.Log("Level3 call.");
             Level3FunctionTriggerer(other); //call the function triggerer of the third level.
         }
         else if (nameOftheCurrentScene == "Level4")
@@ -473,7 +484,7 @@ public class GrabbingObject : MonoBehaviour
     //level3 triggerer active function.
     private void Level3FunctionTriggerer(Collider other)
     {
-        if ((other.gameObject.CompareTag("Elevator")) && (hasTheCardForElevator == true))
+        if ((other.gameObject.CompareTag("Elevator")) && (hasTheCardForElevator == true) && (hasOpenedElettricity == true))
         {
             Debug.Log("level Passed Successfully!");
             levelPassedTextAdvise.gameObject.SetActive(true); //level passed advise text.
@@ -483,24 +494,16 @@ public class GrabbingObject : MonoBehaviour
             ausiliarGO2Move.gameObject.SetActive(acceptedTransition); //block of the looking visual input from the player.
             ausiliarGO03TimerStop.gameObject.SetActive(acceptedTransition); //block of the timer value.
         }
-
-        if (counterClickerButtonAusiliarVar.gameObject.activeSelf == true)
+        else if ((other.gameObject.CompareTag("Elevator") && ((hasTheCardForElevator == false) || (hasOpenedElettricity == false))))
         {
-            if (other.gameObject.CompareTag("CardElevator"))
-            {
-                Debug.Log("card elevator picked");
-                other.gameObject.SetActive(false);
-                hasTheCardForElevator = true;
-                keyGrabbedTextAdvise.gameObject.SetActive(true);
-                StartCoroutine(TimeOfViewingKeyText());
-            }
-
-            if (other.gameObject.CompareTag("Elettricity"))
-            {
-                hasActivedElettricityText.gameObject.SetActive(true);
-                StartCoroutine(ElettricityViewingTextAdviseCoroutine());
-                hasOpenedElettricity = true;
-            }
+            doorBunkerMissingKeyText.gameObject.SetActive(true);
+            StartCoroutine(TimeOfViewingMissingKeyText());
+        }
+        if (other.gameObject.CompareTag("Elettricity"))
+        {
+            hasActivedElettricityText.gameObject.SetActive(true);
+            StartCoroutine(ElettricityViewingTextAdviseCoroutine());
+            hasOpenedElettricity = true;
             counterClickerButtonAusiliarVar.gameObject.SetActive(false);
         }
     }

@@ -240,8 +240,8 @@ public class GameManager1 : MonoBehaviour
                    StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[3])); //15 seconds of visualization
                }
            }
-            /* else if (levelNumber == 4) //TIPS LEVEL4
-            {
+     /*      else if (levelNumber == 4) //TIPS LEVEL4
+             {
                 //Visualizing all the tips
                 if ((minutesOfCountdown == ) && (secondsOfCountdown == )) //tip1
                 {
@@ -263,13 +263,13 @@ public class GameManager1 : MonoBehaviour
                     tipsGameObjects[3].gameObject.SetActive(true); //text active 
                     StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[3])); //15 seconds of visualization
                 }
-            }
-        } */
+             }
+        */
 
-            if ((valueTimeForCountdown > 0) && (ausiliarG03TimerStop.gameObject.activeInHierarchy == true)) //if the level is passed successfully
-            {
-                countdownTextUI.color = Color.green; //the color of the timer text will be setted to green.
-            }
+             if ((valueTimeForCountdown > 0) && (ausiliarG03TimerStop.gameObject.activeInHierarchy == true)) //if the level is passed successfully
+             {
+                 countdownTextUI.color = Color.green; //the color of the timer text will be setted to green.
+             }
         }
     }
 
