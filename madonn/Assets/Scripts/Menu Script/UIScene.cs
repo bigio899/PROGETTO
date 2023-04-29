@@ -36,7 +36,6 @@ public class UIScene : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-
         //condition that verify if the coroutine is ended.If the value is true,all the GameButtons of the menu will back active, and the intro will disabilited.
         if ((isCoroutineEnded == true) && (ausiliarVariable == 0))
         {

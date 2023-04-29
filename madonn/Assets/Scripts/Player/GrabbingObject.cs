@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Animations;
-
+using UnityEngine.Video;
 public class GrabbingObject : MonoBehaviour
 {
     //ausiliar GameObject
@@ -89,12 +89,17 @@ public class GrabbingObject : MonoBehaviour
     private bool hasTheCardForElevator; //this variable is used to know that the player has grabbed the card for the elevator. 
     [SerializeField] private TextMeshProUGUI hasActivedElettricityText;
     private bool hasOpenedElettricity = false;
+
+    //end video first release(1th May 2023)
+    [SerializeField] private VideoPlayer endFirstReleaseVideo;
+    private bool ausiliarHole = false;
+    private bool ausiliarHole2 = false;
     // Start function is called before the first frame update.(MAIN)
     private void Start()
     {
         levelPassedTextAdvise.gameObject.SetActive(rejectedTransition);
         loadingSubScene.gameObject.SetActive(false); pauseSubScene.gameObject.SetActive(false);
-
+        ausiliarHole = false;
         nameOftheCurrentScene = SceneManager.GetActiveScene().name; //get the name of the current active scene.
     }
 
@@ -116,10 +121,13 @@ public class GrabbingObject : MonoBehaviour
                 StartCoroutine(JumpScareLevel1()); //start coroutine that set the active status of the jumpscare.
             }
         }
-      //  else if ((nameOftheCurrentScene == "level3") && (hasOpenedElettricity == true))
-       // {
-
-        //}
+        else if ((nameOftheCurrentScene == "Level4") && (ausiliarHole == true) && (!endFirstReleaseVideo.isPlaying) && (ausiliarHole2 == false))
+        {
+            Debug.Log("Called");
+            endLevelGO.gameObject.SetActive(true);
+            GameObject.Find("EndLevelButton").GetComponent<Button>().interactable = false;
+            ausiliarHole2 = true;
+        }
 
         //condition that active the jumpscare sound.
         if (ausiliarJumpScare == true)
@@ -323,7 +331,7 @@ public class GrabbingObject : MonoBehaviour
     //coroutine for don't have bugs for the key with the opening of both the doors.
     private IEnumerator JumpScareLevel1()
     {
-        yield return (new WaitForSeconds(4.0f));
+        yield return (new WaitForSeconds(3.6f));
         ausiliarJumpScare = true;
         auxJumpscareUpdateMethod = false;
     }
@@ -521,6 +529,15 @@ public class GrabbingObject : MonoBehaviour
     //level4 triggerer active function.
     private void Level4FunctionTriggerer(Collider other)
     {
-
+        if((other.gameObject.CompareTag("Hole")))
+        {
+            ausiliarHole = true;
+            endFirstReleaseVideo.Play();
+            textAndButtons.gameObject.SetActive(false); // disactive the buttons(invisible).
+            ausiliarGO1Look.gameObject.SetActive(acceptedTransition); //block of the movement input from the player.
+            ausiliarGO2Move.gameObject.SetActive(acceptedTransition); //block of the looking visual input from the player.
+            ausiliarGO03TimerStop.gameObject.SetActive(acceptedTransition); //block of the timer value.
+            other.gameObject.tag = ("Untagged");
+        }
     }
 }

@@ -94,9 +94,13 @@ public class IntersitialAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnity
             numberActualScene = 2; //level2.
         }
 
-        else if(stringActualScene == "Level3")
+        else if (stringActualScene == "level3")
         {
             numberActualScene = 3; //level3.
+        }
+        else if (stringActualScene == "Level4")
+        {
+            numberActualScene = 4; //level4
         }
 
         if ((backMenu.activeSelf == false) && (stringActualScene != "SampleScene"))

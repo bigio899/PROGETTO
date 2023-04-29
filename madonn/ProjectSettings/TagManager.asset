@@ -18,6 +18,7 @@ TagManager:
   - ExitFirstHouseLevel2
   - Elettricity
   - EndLevel2Passingtransition
+  - Hole
   layers:
   - Default
   - TransparentFX
