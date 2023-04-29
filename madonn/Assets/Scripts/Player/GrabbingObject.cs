@@ -91,9 +91,11 @@ public class GrabbingObject : MonoBehaviour
     private bool hasOpenedElettricity = false;
 
     //end video first release(1th May 2023)
-    [SerializeField] private VideoPlayer endFirstReleaseVideo;
+    [SerializeField] private GameObject endFirstReleaseVideo;
+    [SerializeField] private GameObject endFirstReleaseVideoPlayer;
     private bool ausiliarHole = false;
     private bool ausiliarHole2 = false;
+
     // Start function is called before the first frame update.(MAIN)
     private void Start()
     {
@@ -121,12 +123,14 @@ public class GrabbingObject : MonoBehaviour
                 StartCoroutine(JumpScareLevel1()); //start coroutine that set the active status of the jumpscare.
             }
         }
-        else if ((nameOftheCurrentScene == "Level4") && (ausiliarHole == true) && (!endFirstReleaseVideo.isPlaying) && (ausiliarHole2 == false))
+        else if ((nameOftheCurrentScene == "Level4") && (ausiliarHole2 == false) && (ausiliarHole == true) && (!endFirstReleaseVideoPlayer.GetComponent<VideoPlayer>().isPlaying ))
         {
-            Debug.Log("Called");
+            Debug.Log("The end of the first release level is called");
+            endFirstReleaseVideo.gameObject.SetActive(false);
             endLevelGO.gameObject.SetActive(true);
             GameObject.Find("EndLevelButton").GetComponent<Button>().interactable = false;
             ausiliarHole2 = true;
+            ausiliarHole = false;
         }
 
         //condition that active the jumpscare sound.
@@ -531,13 +535,19 @@ public class GrabbingObject : MonoBehaviour
     {
         if((other.gameObject.CompareTag("Hole")))
         {
-            ausiliarHole = true;
-            endFirstReleaseVideo.Play();
+            endFirstReleaseVideo.gameObject.SetActive(true);
             textAndButtons.gameObject.SetActive(false); // disactive the buttons(invisible).
             ausiliarGO1Look.gameObject.SetActive(acceptedTransition); //block of the movement input from the player.
             ausiliarGO2Move.gameObject.SetActive(acceptedTransition); //block of the looking visual input from the player.
             ausiliarGO03TimerStop.gameObject.SetActive(acceptedTransition); //block of the timer value.
             other.gameObject.tag = ("Untagged");
+            StartCoroutine(HoleCoroutineEndFirstRelease());
         }
+    }
+
+    private IEnumerator HoleCoroutineEndFirstRelease()
+    {
+        yield return new WaitForSeconds(6.0f);
+        ausiliarHole = true;
     }
 }
