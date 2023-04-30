@@ -96,6 +96,7 @@ public class GrabbingObject : MonoBehaviour
     private bool ausiliarHole = false;
     private bool ausiliarHole2 = false;
 
+    private bool ausiliarEndLevel4SaveAvancementFunction = false;
     // Start function is called before the first frame update.(MAIN)
     private void Start()
     {
@@ -123,14 +124,22 @@ public class GrabbingObject : MonoBehaviour
                 StartCoroutine(JumpScareLevel1()); //start coroutine that set the active status of the jumpscare.
             }
         }
+        //if the player is on level4, he finds the hole and he finished to watch the "EndLevelVideo"
         else if ((nameOftheCurrentScene == "Level4") && (ausiliarHole2 == false) && (ausiliarHole == true) && (!endFirstReleaseVideoPlayer.GetComponent<VideoPlayer>().isPlaying ))
         {
+            if (ausiliarEndLevel4SaveAvancementFunction == false) // repeat the saving only one time. 
+            {
+                DataPersistence.instanceDataPersistence.levelAvancement = 5;
+                DataPersistence.instanceDataPersistence.SaveLevelAvancementFunction();
+            }
+
             Debug.Log("The end of the first release level is called");
-            endFirstReleaseVideo.gameObject.SetActive(false);
-            endLevelGO.gameObject.SetActive(true);
-            GameObject.Find("EndLevelButton").GetComponent<Button>().interactable = false;
-            ausiliarHole2 = true;
-            ausiliarHole = false;
+            endFirstReleaseVideo.gameObject.SetActive(false); // disactive the end level video.
+            endLevelGO.gameObject.SetActive(true); // active the end level menu
+            levelPassedTextAdvise.gameObject.SetActive(true);
+            GameObject.Find("EndLevelButton").GetComponent<Button>().interactable = false; // the button nextlevel isn't interactable for the moment because the level5 isn't released  yet.
+            ausiliarHole2 = true; //ausiliar hole1 true value.
+            ausiliarHole = false; //ausiliarhole2 false value
         }
 
         //condition that active the jumpscare sound.
@@ -462,7 +471,8 @@ public class GrabbingObject : MonoBehaviour
     //level2 triggerer active function.
     private void Level2FunctionTriggerer(Collider other)
     {
-        if (other.gameObject.CompareTag("EndLevel2Passingtransition")) //if the player arrives in front ofthe mine
+        // ENDLEVEL2 verifier that active the endlevelmenu and disactive all the rest.
+        if (other.gameObject.CompareTag("EndLevel2Passingtransition")) //if the player arrives in front of the mine
         {
             levelPassedTextAdvise.gameObject.SetActive(true); //level passed advise text.
             padlockGameObjectTransition.gameObject.SetActive(false);
@@ -475,7 +485,7 @@ public class GrabbingObject : MonoBehaviour
             ausiliarGO03TimerStop.gameObject.SetActive(acceptedTransition); //block of the timer value.
         }
         
-        if (other.gameObject.CompareTag("ExitFirstHouseLevel2") && (isKeyGrabbedToThePlayer == true))
+        if (other.gameObject.CompareTag("ExitFirstHouseLevel2") && (isKeyGrabbedToThePlayer == true)) // if the player open the door of the house of the level2
         {
             Debug.Log("ExitLevel2 Called Tag");
             doorBunkerOpeningTextAdvise.gameObject.SetActive(acceptedTransition);
@@ -496,6 +506,7 @@ public class GrabbingObject : MonoBehaviour
     //level3 triggerer active function.
     private void Level3FunctionTriggerer(Collider other)
     {
+        //if the player triggers with the elevator, has the card for use him and the elettricity is been actived(ENDLEVEL3)
         if ((other.gameObject.CompareTag("Elevator")) && (hasTheCardForElevator == true) && (hasOpenedElettricity == true))
         {
             Debug.Log("level Passed Successfully!");
@@ -506,11 +517,13 @@ public class GrabbingObject : MonoBehaviour
             ausiliarGO2Move.gameObject.SetActive(acceptedTransition); //block of the looking visual input from the player.
             ausiliarGO03TimerStop.gameObject.SetActive(acceptedTransition); //block of the timer value.
         }
+        //if the player triggers with the elevator, but hasn't the card for use him or the elettricity isn't been actived yet
         else if ((other.gameObject.CompareTag("Elevator") && ((hasTheCardForElevator == false) || (hasOpenedElettricity == false))))
         {
             doorBunkerMissingKeyText.gameObject.SetActive(true);
             StartCoroutine(TimeOfViewingMissingKeyText());
         }
+        //if the player active the elettricity from the panel
         if (other.gameObject.CompareTag("Elettricity"))
         {
             hasActivedElettricityText.gameObject.SetActive(true);
@@ -520,6 +533,7 @@ public class GrabbingObject : MonoBehaviour
         }
     }
 
+    //Coroutine for viewing the advise of opening the elettricity of the mine.
     private IEnumerator ElettricityViewingTextAdviseCoroutine()
     {
         yield return new WaitForSeconds(5.0f);
@@ -533,6 +547,7 @@ public class GrabbingObject : MonoBehaviour
     //level4 triggerer active function.
     private void Level4FunctionTriggerer(Collider other)
     {
+        //if the player triggers with the hole(ENDLEVEL4)
         if((other.gameObject.CompareTag("Hole")))
         {
             endFirstReleaseVideo.gameObject.SetActive(true);
@@ -545,6 +560,7 @@ public class GrabbingObject : MonoBehaviour
         }
     }
 
+    //Coroutine for do the start of the endlevel video(with the ausiliarhole variable setted to true). 
     private IEnumerator HoleCoroutineEndFirstRelease()
     {
         yield return new WaitForSeconds(6.0f);

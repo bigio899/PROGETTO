@@ -27,7 +27,7 @@ public class GameManager1 : MonoBehaviour
     private int levelNumber = 0; //this variable is used to identify the level and load the scene of the relative level if the time ends. 
 
     //declaration gameobjects's variables 
-    [SerializeField] private GameObject loadingSubScene;  //loading screen gameobject. 
+    [SerializeField] private GameObject loadingSubScene;  //loading screen gameobject.
     [SerializeField] private GameObject gameButtons; //buttons in the menu gameobjects.
     public GameObject pauseButton;
 
@@ -87,7 +87,7 @@ public class GameManager1 : MonoBehaviour
         else if (nameOftheCurrentScene == nameFourthLevelScene) // if the scene is level4
         {
 
-            valueTimeForCountdown = 599.00f; //set the start value of the timer to 10 minutes.
+            valueTimeForCountdown = 299.00f; //set the start value of the timer to 10 minutes.
             levelNumber = 4;
             DataPersistence.instanceDataPersistence.levelAvancement = 4; //add the persistence of the level avancement 4.
             DataPersistence.instanceDataPersistence.SaveLevelAvancementFunction(); //save this value in json format extension. 
@@ -243,12 +243,12 @@ public class GameManager1 : MonoBehaviour
             else if (levelNumber == 4) //TIPS LEVEL4
             {
                 //Visualizing all the tips
-                if ((minutesOfCountdown == 5) && (secondsOfCountdown == 01)) //tip1
+                if ((minutesOfCountdown == 4) && (secondsOfCountdown == 41)) //tip1
                 {
                     tipsGameObjects[0].gameObject.SetActive(true); //text active
                     StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[0])); //15 seconds of visualization
                 }
-                else if ((minutesOfCountdown == 2) && (secondsOfCountdown == 01)) //tip2
+                else if ((minutesOfCountdown == 3) && (secondsOfCountdown == 01)) //tip2
                 {
                     tipsGameObjects[1].gameObject.SetActive(true); //text active
                     StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[1])); //15 seconds of visualization

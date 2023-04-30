@@ -16,7 +16,7 @@ public class UIScene : MonoBehaviour
     [SerializeField] GameObject loadingIntro; //variable where's allocated the P&B logo.
     [SerializeField] GameObject gameButtons;  //variable where're allocated the buttons of the Menu(Play,Options,Exit...).
     [SerializeField] private GameObject audioSoruceBackgroundMusic; //variable where's allocated the music in the background of the menu.
-
+    [SerializeField] private GameObject textNewRelease; //variable where is contained the text of "Waiting the new release for resume the game".
     //Resume Button used for the interactions
     [SerializeField] private Button resumeButton;
     // Start is called before the first frame update.
@@ -51,10 +51,20 @@ public class UIScene : MonoBehaviour
         if ((DataPersistence.instanceDataPersistence.levelAvancement == 1) && (audioSoruceBackgroundMusic.activeInHierarchy == true))
         {
             resumeButton.interactable = false;
+            textNewRelease.gameObject.SetActive(false);
         }
         else if ((DataPersistence.instanceDataPersistence.levelAvancement > 1) && (audioSoruceBackgroundMusic.activeInHierarchy == true))
         {
-            resumeButton.interactable = true;
+            if (DataPersistence.instanceDataPersistence.levelAvancement != 5)
+            {
+                resumeButton.interactable = true;
+                textNewRelease.gameObject.SetActive(false);
+            }
+            else if (DataPersistence.instanceDataPersistence.levelAvancement == 5)
+            {
+                resumeButton.interactable = false;
+                textNewRelease.gameObject.SetActive(true);
+            }
         }
     }
 

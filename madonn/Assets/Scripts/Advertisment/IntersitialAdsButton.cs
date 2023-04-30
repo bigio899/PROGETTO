@@ -68,6 +68,10 @@ public class IntersitialAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnity
     {
         stringActualScene = SceneManager.GetActiveScene().name; //get the name of the scene in esecution. 
         DataPersistence.instanceDataPersistence.LoadLevelAvancementFunction();
+        if(SceneManager.GetActiveScene().name != "SampleScene")
+        {
+            GameObject.Find("TextAdviseWifi").SetActive(false);
+        }
         if (stringActualScene == "SampleScene")
         {
             numberActualScene = 0; //menu.

@@ -33,7 +33,6 @@ public class FunctionAds : MonoBehaviour
         endLevel.gameObject.SetActive(false);
         gamebuttonText.gameObject.SetActive(false);
         textAdvisePassedLevel.gameObject.SetActive(false);
-
         loadingSubScene.gameObject.SetActive(true);
     }
 

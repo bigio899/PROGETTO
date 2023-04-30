@@ -7,6 +7,7 @@ public class OnClickButton : MonoBehaviour
 
     public void BackMenuFunction()
     {
+        GameObject.Find("LoadingSubScene").SetActive(true);
         IntersitialAdsButton interstitialAdsButton = GameObject.Find("Advertisement").GetComponent<IntersitialAdsButton>(); //reference of intersitial button script.
         GameObject.Find("backMenuVerifier").SetActive(false);
         interstitialAdsButton.ShowAd();
@@ -15,6 +16,7 @@ public class OnClickButton : MonoBehaviour
 
     public void RewardAdsFunction()
     {
+        GameObject.Find("LoadingSubScene").SetActive(true);
         RewardedAdsButton rewardAdsFunction = GameObject.Find("Advertisement").GetComponent<RewardedAdsButton>();
         GameObject.Find("FailureMenu").SetActive(false);
         rewardAdsFunction.ShowAd();
@@ -23,6 +25,7 @@ public class OnClickButton : MonoBehaviour
 
     public void NextLevel()
     {
+        GameObject.Find("LoadingSubScene").SetActive(true);
         IntersitialAdsButton intersitialAdsButton = GameObject.Find("Advertisement").GetComponent<IntersitialAdsButton>();
         GameObject.Find("nextLevelVerifier").SetActive(false);
         intersitialAdsButton.ShowAd();

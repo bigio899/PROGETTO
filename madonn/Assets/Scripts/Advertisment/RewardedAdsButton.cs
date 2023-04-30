@@ -39,6 +39,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     {
         // Then show the ad:
         Advertisement.Show(_adUnitId, this);
+        GameObject.Find("LoadingSubScene").SetActive(true);
     }
 
     // Implement the Show Listener's OnUnityAdsShowComplete callback method to determine if the user gets a reward:
@@ -52,7 +53,8 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
             GameObject.Find("AusiliarGO1").SetActive(false);
             GameObject.Find("AusiliarGO2").SetActive(false);
             GameObject.Find("AusiliarAddingTimeGO").SetActive(false);
-            Debug.Log("You've gained another seconds for finish the level.");
+            GameObject.Find("LoadingSubScene").SetActive(false);
+            Debug.Log("You've gained another seconds for finish the level."); 
         }
     }
 
