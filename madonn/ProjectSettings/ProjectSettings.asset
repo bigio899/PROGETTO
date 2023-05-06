@@ -163,7 +163,7 @@ PlayerSettings:
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 29
+  AndroidMinSdkVersion: 31
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -173,7 +173,7 @@ PlayerSettings:
   ForceInternetPermission: 1
   ForceSDCardPermission: 0
   CreateWallpaper: 0
-  APKExpansionFiles: 0
+  APKExpansionFiles: 1
   keepLoadedShadersAlive: 0
   StripUnusedMeshComponents: 1
   VertexChannelCompressionMask: 4054
