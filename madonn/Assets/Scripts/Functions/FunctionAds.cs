@@ -49,4 +49,9 @@ public class FunctionAds : MonoBehaviour
 
         loadingSubScene.gameObject.SetActive(true);
     }
+
+    public void LevelAvancementPersistence()
+    {
+        DataPersistence.instanceDataPersistence.levelAvancement = SceneManager.GetActiveScene().buildIndex + 1;
+    }
 }
