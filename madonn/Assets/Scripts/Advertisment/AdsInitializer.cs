@@ -6,7 +6,7 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener
 {
     [SerializeField] string _androidGameId;
     [SerializeField] string _iOSGameId;
-    [SerializeField] bool _testMode = false;
+    [SerializeField] bool _testMode = true;
     private string _gameId;
 
     public RewardedAdsButton rewardedAdsButton; //reference of rewarded button script.

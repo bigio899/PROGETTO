@@ -49,6 +49,7 @@ public class GameManager1 : MonoBehaviour
 
     //ausiliar
     private bool ausiliar = false;
+    private bool ausiliarZeroSeconds = false; 
 
     // Start is called before the first frame update.
     void Start()
@@ -98,7 +99,7 @@ public class GameManager1 : MonoBehaviour
         if (ausiliarAddingTimeGameManager.gameObject.activeSelf == false) //ausiliar gameobject used for add time to the gamemanager.
         {
             CallLoadingFunctionAdvertisement();
-
+            ausiliarZeroSeconds = false;
             valueTimeForCountdown = 89.0f; //set the value of the timer to 1.30 minutes. 
             ausiliarAddingTimeGameManager.gameObject.SetActive(true);
         }
@@ -127,6 +128,7 @@ public class GameManager1 : MonoBehaviour
                 CallLoadingFunctionAdvertisement();
                 gameButtons.gameObject.SetActive(true);  //buttons of the scene are visible.
                 countdownTextUI.gameObject.SetActive(true);   //the timer is actived.
+                ausiliarZeroSeconds = false;
             }
 
             if ((valueTimeForCountdown > 0) && (ausiliarG03TimerStop.gameObject.activeSelf == false)) //if the time(in deltatime value) is major than zero
@@ -157,8 +159,9 @@ public class GameManager1 : MonoBehaviour
         if ((minutesOfCountdown == 0) && (secondsOfCountdown <= 10)) //if the timer is arrived to 10 seconds or less
         {
             countdownTextUI.color = Color.red; //the color of the timer text will be setted to red.
-            if ((secondsOfCountdown == 0)) //if the timer is arrived to 0 seconds remaining
+            if ((secondsOfCountdown == 0) && (ausiliarZeroSeconds == false)) //if the timer is arrived to 0 seconds remaining
             {
+                ausiliarZeroSeconds = true;
                 CallLoadingFunctionAdvertisement();
 
                 failureLevelAdviseUI.gameObject.SetActive(true);

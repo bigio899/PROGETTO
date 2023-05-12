@@ -16,9 +16,8 @@ public class OnClickButton : MonoBehaviour
 
     public void RewardAdsFunction()
     {
-        GameObject.Find("LoadingSubScene").SetActive(true);
+        Debug.Log("Rewarded are called.");
         RewardedAdsButton rewardAdsFunction = GameObject.Find("Advertisement").GetComponent<RewardedAdsButton>();
-        GameObject.Find("FailureMenu").SetActive(false);
         rewardAdsFunction.ShowAd();
         rewardAdsFunction.LoadAd();
     }
