@@ -8566,7 +8566,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7223769680529032283, guid: 24b0abaa8185a8049b5b80b9f4034ad1, type: 3}
       propertyPath: _testMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7223769680529032283, guid: 24b0abaa8185a8049b5b80b9f4034ad1, type: 3}
       propertyPath: rewardedAdsButton

@@ -37,13 +37,15 @@ public class LookAroundScript : MonoBehaviour
     {
         if (!ausiliarGO1Look.activeSelf)
         {
-            //condition that verify if the player is in movement(the result will go on "isPlayerInMovement"variable)
+            /* condition that verify if the player is in movement(the result will go on "isPlayerInMovement"variable)
             if ((fixedJoystickGameObject.Horizontal == 0) && (fixedJoystickGameObject.Vertical == 0))
             {
                 isPlayerInMovement = false;
             }
+            */
+
             //condition that verify if the engine detects that there's an input on the touchscreen amd if the player is on movement.
-            if ((Input.touchCount > 0) && (isPlayerInMovement == false))
+            if ((Input.touchCount > 0) /* && (isPlayerInMovement == false)*/ )
             {
                 theTouch = Input.GetTouch(0); //get the first touch that is detected.
                 if (theTouch.position.x >= 575.00f)

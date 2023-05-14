@@ -6,7 +6,8 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener
 {
     [SerializeField] string _androidGameId;
     [SerializeField] string _iOSGameId;
-    [SerializeField] bool _testMode = true;
+    [SerializeField] bool _testMode = false;
+    private bool ausiliar = false;
     private string _gameId;
 
     public RewardedAdsButton rewardedAdsButton; //reference of rewarded button script.
@@ -19,7 +20,15 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener
         interstitialAdsButton = GameObject.Find("Advertisement").GetComponent<IntersitialAdsButton>();
         InitializeAds(); //function that initialize the advertisement tool.
     }
-
+    private void Update()
+    {
+        if (ausiliar == true)
+        {
+            ausiliar = !ausiliar;
+            rewardedAdsButton.LoadAd();
+            interstitialAdsButton.LoadAd();
+        }
+    }
     //function that initialize the advertisement tool.
     public void InitializeAds()
     {
@@ -34,14 +43,13 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener
         {
             Advertisement.Initialize(_gameId, _testMode, this);
         }
+        ausiliar = true;
     }
 
     
     public void OnInitializationComplete()
     {
         Debug.Log("Unity Ads initialization complete.");
-        rewardedAdsButton.LoadAd();
-        interstitialAdsButton.LoadAd();
     }
 
     public void OnInitializationFailed(UnityAdsInitializationError error, string message)
