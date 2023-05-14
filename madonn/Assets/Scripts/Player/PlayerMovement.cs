@@ -26,6 +26,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject stepsSound; //variable where's allocated the step sound gameobject(to active and disactive in the script)
     private bool ausiliarStepSoundDisactiving; // ausiliar gameobject that stop the sound if the ausiliarGO2Movement is disabled and the player can't move.
 
+    private void Start()
+    {
+        if (SceneManager.GetActiveScene().name == "Level2") ;
+        {
+            speedOfTheMovement = (speedOfTheMovement + 0.01f);
+        }
+
+    }
+
     // Update is called once per frame
     void Update()
     {
