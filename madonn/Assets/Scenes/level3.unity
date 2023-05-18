@@ -7406,7 +7406,7 @@ MonoBehaviour:
   failureLevelAdviseUI: {fileID: 1461143478}
   valueTimeForCountdown: 0
   introductionChapterVideosource: {fileID: 690279945}
-  failureMenuUtilitiesVar: {fileID: 7632398463971956286}
+  failureMenuUtilitiesVar: {fileID: 866873047}
   tipsGameObjects:
   - {fileID: 1381354449}
   - {fileID: 130847552}
