@@ -20,15 +20,12 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener
         interstitialAdsButton = GameObject.Find("Advertisement").GetComponent<IntersitialAdsButton>();
         InitializeAds(); //function that initialize the advertisement tool.
     }
+
     private void Update()
     {
-        if (ausiliar == true)
-        {
-            ausiliar = !ausiliar;
-            rewardedAdsButton.LoadAd();
-            interstitialAdsButton.LoadAd();
-        }
+
     }
+
     //function that initialize the advertisement tool.
     public void InitializeAds()
     {
@@ -39,17 +36,18 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener
 #elif UNITY_EDITOR
             _gameId = _androidGameId; //Only for testing the functionality in the Editor
 #endif
-        if (!Advertisement.isInitialized && Advertisement.isSupported)
+        if (!Advertisement.isInitialized)
         {
             Advertisement.Initialize(_gameId, _testMode, this);
         }
-        ausiliar = true;
     }
 
     
     public void OnInitializationComplete()
     {
         Debug.Log("Unity Ads initialization complete.");
+        rewardedAdsButton.LoadAd();
+        interstitialAdsButton.LoadAd();
     }
 
     public void OnInitializationFailed(UnityAdsInitializationError error, string message)
