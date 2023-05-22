@@ -66,6 +66,7 @@ public class GameManager1 : MonoBehaviour
             levelNumber = 1;
             DataPersistence.instanceDataPersistence.levelAvancement = 1; //add the persistence of the level avancemenent 1.
             DataPersistence.instanceDataPersistence.SaveLevelAvancementFunction(); //save this value in json.
+            CallLoadingFunctionAdvertisement();
         }
 
         else if (nameOftheCurrentScene == nameSecondLevelScene) //if the scene is Level2
@@ -75,6 +76,7 @@ public class GameManager1 : MonoBehaviour
             levelNumber = 2;
             DataPersistence.instanceDataPersistence.levelAvancement = 2; //add the persistence of the level avancemenent 2.
             DataPersistence.instanceDataPersistence.SaveLevelAvancementFunction(); //save this value in json.
+            CallLoadingFunctionAdvertisement();
         }
 
         else if (nameOftheCurrentScene == nameThirdLevelScene) // if the scene is Level3
@@ -84,6 +86,7 @@ public class GameManager1 : MonoBehaviour
             levelNumber = 3;
             DataPersistence.instanceDataPersistence.levelAvancement = 3; //add the persistence of the level avancement 3.
             DataPersistence.instanceDataPersistence.SaveLevelAvancementFunction(); //save this value in json format extension. 
+            CallLoadingFunctionAdvertisement();
         }
         else if (nameOftheCurrentScene == nameFourthLevelScene) // if the scene is level4
         {
@@ -92,6 +95,7 @@ public class GameManager1 : MonoBehaviour
             levelNumber = 4;
             DataPersistence.instanceDataPersistence.levelAvancement = 4; //add the persistence of the level avancement 4.
             DataPersistence.instanceDataPersistence.SaveLevelAvancementFunction(); //save this value in json format extension. 
+            CallLoadingFunctionAdvertisement();
         }
     }
     private void Update()
@@ -125,7 +129,6 @@ public class GameManager1 : MonoBehaviour
             if (ausiliar == false) //only the first frame esecute these lines of code.
             {
                 ausiliar = true;
-                CallLoadingFunctionAdvertisement();
                 gameButtons.gameObject.SetActive(true);  //buttons of the scene are visible.
                 countdownTextUI.gameObject.SetActive(true);   //the timer is actived.
                 ausiliarZeroSeconds = false;
@@ -162,7 +165,6 @@ public class GameManager1 : MonoBehaviour
             if ((secondsOfCountdown == 0) && (ausiliarZeroSeconds == false)) //if the timer is arrived to 0 seconds remaining
             {
                 ausiliarZeroSeconds = true;
-                CallLoadingFunctionAdvertisement();
 
                 failureLevelAdviseUI.gameObject.SetActive(true);
                 ausiliarGO1Look.gameObject.SetActive(true); //ausiliar gameobject used in the look script.
