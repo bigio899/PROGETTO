@@ -6,8 +6,7 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener
 {
     [SerializeField] string _androidGameId;
     [SerializeField] string _iOSGameId;
-    [SerializeField] bool _testMode = false;
-    private bool ausiliar = false;
+    public bool _testMode = true;
     private string _gameId;
 
     public RewardedAdsButton rewardedAdsButton; //reference of rewarded button script.
@@ -16,8 +15,6 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener
 
     void Awake()
     {
-        rewardedAdsButton = GameObject.Find("Advertisement").GetComponent<RewardedAdsButton>();
-        interstitialAdsButton = GameObject.Find("Advertisement").GetComponent<IntersitialAdsButton>();
         InitializeAds(); //function that initialize the advertisement tool.
     }
 
@@ -36,7 +33,7 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener
 #elif UNITY_EDITOR
             _gameId = _androidGameId; //Only for testing the functionality in the Editor
 #endif
-        if (!Advertisement.isInitialized)
+        if (!Advertisement.isInitialized && (Advertisement.isSupported))
         {
             Advertisement.Initialize(_gameId, _testMode, this);
         }
