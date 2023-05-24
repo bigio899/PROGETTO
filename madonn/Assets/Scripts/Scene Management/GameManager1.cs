@@ -14,6 +14,7 @@ public class GameManager1 : MonoBehaviour
     private static string nameSecondLevelScene = "Level2"; //variable that is used to compare the "nameOfTheCurrentScene" to the second level scene.
     private static string nameThirdLevelScene = "level3"; //variable that is used to compare the "nameofthecurrentscene" to the third level scene.
     private static string nameFourthLevelScene = "Level4"; //variable that is used to compare the "nameofthecurrentscene" to the fourth level scene.
+    private static string nameFifthLevelScene = "Level5"; //variable that is used to compare the "nameofthecurrentscene" to the fifth level scene.
 
     //this variable is used for take the count of the click of the main button.
     [SerializeField] private GameObject counterClickerButtonAusiliarVar;
@@ -71,7 +72,6 @@ public class GameManager1 : MonoBehaviour
 
         else if (nameOftheCurrentScene == nameSecondLevelScene) //if the scene is Level2
         {
-
             valueTimeForCountdown = 539.00f; //set the start value of the timer to 9 minutes.
             levelNumber = 2;
             DataPersistence.instanceDataPersistence.levelAvancement = 2; //add the persistence of the level avancemenent 2.
@@ -81,7 +81,6 @@ public class GameManager1 : MonoBehaviour
 
         else if (nameOftheCurrentScene == nameThirdLevelScene) // if the scene is Level3
         {
-
             valueTimeForCountdown = 599.00f; //set the start value of the timer to 10 minutes. 
             levelNumber = 3;
             DataPersistence.instanceDataPersistence.levelAvancement = 3; //add the persistence of the level avancement 3.
@@ -90,12 +89,18 @@ public class GameManager1 : MonoBehaviour
         }
         else if (nameOftheCurrentScene == nameFourthLevelScene) // if the scene is level4
         {
-
-            valueTimeForCountdown = 299.00f; //set the start value of the timer to 10 minutes.
+            valueTimeForCountdown = 299.00f; //set the start value of the timer to 5 minutes.
             levelNumber = 4;
             DataPersistence.instanceDataPersistence.levelAvancement = 4; //add the persistence of the level avancement 4.
             DataPersistence.instanceDataPersistence.SaveLevelAvancementFunction(); //save this value in json format extension. 
             CallLoadingFunctionAdvertisement();
+        }
+        else if (nameOftheCurrentScene == nameFifthLevelScene) // if the scene is Level5
+        {
+            valueTimeForCountdown = 419.00f; //set the start value of the timer to 7 minutes.
+            levelNumber = 5;
+            DataPersistence.instanceDataPersistence.levelAvancement = 5;
+            DataPersistence.instanceDataPersistence.SaveLevelAvancementFunction();
         }
     }
     private void Update()
@@ -259,6 +264,30 @@ public class GameManager1 : MonoBehaviour
                     StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[1])); //15 seconds of visualization
                 }
             }
+            else if (levelNumber == 5)
+            {
+                //Visualizing all the tips
+                if ((minutesOfCountdown == 6) && (secondsOfCountdown == 31)) //tip1
+                {
+                    tipsGameObjects[0].gameObject.SetActive(true); //text active
+                    StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[0])); //15 seconds of visualization
+                }
+                else if ((minutesOfCountdown == 4) && (secondsOfCountdown == 51)) //tip2
+                {
+                    tipsGameObjects[1].gameObject.SetActive(true); //text active
+                    StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[1])); //15 seconds of visualization
+                }
+                else if ((minutesOfCountdown == 3) && (secondsOfCountdown == 21)) //tip3
+                {
+                    tipsGameObjects[2].gameObject.SetActive(true); //text active
+                    StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[2])); //15 seconds of visualization
+                }
+                else if ((minutesOfCountdown == 2) && (secondsOfCountdown == 11)) //tip4
+                {
+                    tipsGameObjects[3].gameObject.SetActive(true); //text active 
+                    StartCoroutine(VisualizingTipsCoroutine(tipsGameObjects[3])); //15 seconds of visualization
+                }
+            }    
 
              if ((valueTimeForCountdown > 0) && (ausiliarG03TimerStop.gameObject.activeInHierarchy == true)) //if the level is passed successfully
              {
