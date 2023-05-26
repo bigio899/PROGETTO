@@ -152,7 +152,7 @@ public class GrabbingObject : MonoBehaviour
         {
             keyIconImage.gameObject.SetActive(acceptedTransition); //the key icon is sected to active.
         }
-        else if (isKeyGrabbedToThePlayer == false)
+        else if ((isKeyGrabbedToThePlayer == false) && (nameOftheCurrentScene != "Level5"))
         {
             keyIconImage.gameObject.SetActive(rejectedTransition); //the key icon is sected to disactive.
         }
@@ -316,6 +316,14 @@ public class GrabbingObject : MonoBehaviour
         {
             Level4FunctionTriggerer(other);
         }     
+        else if (nameOftheCurrentScene == "Level5")
+        {
+            Level5FunctionTriggerer(other);
+        }
+        else if (nameOftheCurrentScene == "Level6")
+        {
+            Level6FunctionTriggerer(other);
+        }
     }
     //function that verify if the Drawer must be opened or closed,and then do the action(of opening or closing).
     private void OpeningOrClosingParametersMethod(int numberOfDrawer)
@@ -565,5 +573,25 @@ public class GrabbingObject : MonoBehaviour
     {
         yield return new WaitForSeconds(6.0f);
         ausiliarHole = true;
+    }
+
+    //-----------------------------------
+    //LEVEL5
+    //+
+
+    //level5 triggerer active function.
+    private void Level5FunctionTriggerer(Collider other)
+    {
+
+    }
+
+    //------------------------------------
+    //LEVEL6
+    //+
+
+    //level6 triggerer active function.
+    private void Level6FunctionTriggerer(Collider other)
+    {
+
     }
 }

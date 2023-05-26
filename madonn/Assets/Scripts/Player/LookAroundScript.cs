@@ -25,6 +25,9 @@ public class LookAroundScript : MonoBehaviour
     //joystick and ausiliar gameobject for block the movement.
     [SerializeField] private FixedJoystick fixedJoystickGameObject;  //joystick for the movement(it will used to verify if the player is in movement or not).
     [SerializeField] private GameObject ausiliarGO1Look;  //gameobject used for block the camera movement.
+
+    //sensibility imput variable value
+    public float sensibilityValueChangedByInput = 1.0f;
     private void Start()
     {
         //initializations of the variables
@@ -85,5 +88,11 @@ public class LookAroundScript : MonoBehaviour
             //this part of script will rotate the y value of the rotation of the father-object
             playerBody.Rotate(Vector3.up * touchscreenInputX);
         }
+    }
+
+    public void SensitivityValueChanged()
+    {
+        sensibilityValueChangedByInput = GameObject.Find("Slider").GetComponent<Slider>().value;
+        touchSensitivity *= sensibilityValueChangedByInput;
     }
 }
