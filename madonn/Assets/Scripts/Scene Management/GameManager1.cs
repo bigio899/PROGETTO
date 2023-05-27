@@ -15,6 +15,8 @@ public class GameManager1 : MonoBehaviour
     private static string nameThirdLevelScene = "level3"; //variable that is used to compare the "nameofthecurrentscene" to the third level scene.
     private static string nameFourthLevelScene = "Level4"; //variable that is used to compare the "nameofthecurrentscene" to the fourth level scene.
     private static string nameFifthLevelScene = "Level5"; //variable that is used to compare the "nameofthecurrentscene" to the fifth level scene.
+    private static string nameSixthLevelScene = "Level6"; //variable that is used to compare the "nameofthecurrentscene" to the sixth level scene.
+    private static string nameSeventhLevelScene = "Level7"; 
 
     //this variable is used for take the count of the click of the main button.
     [SerializeField] private GameObject counterClickerButtonAusiliarVar;
@@ -100,8 +102,27 @@ public class GameManager1 : MonoBehaviour
             valueTimeForCountdown = 419.00f; //set the start value of the timer to 7 minutes.
             levelNumber = 5;
             DataPersistence.instanceDataPersistence.levelAvancement = 5;
-            DataPersistence.instanceDataPersistence.SaveLevelAvancementFunction();
+            DataPersistence.instanceDataPersistence.SaveLevelAvancementFunction(); //save this value in json format extension. 
+            CallLoadingFunctionAdvertisement();
         }
+        else if (nameOftheCurrentScene == nameSixthLevelScene) //if the scene is level6
+        {
+            valueTimeForCountdown = 29.00f; //set the start value of the timer to 7 minutes.
+            levelNumber = 6;
+            DataPersistence.instanceDataPersistence.levelAvancement = 6;
+            DataPersistence.instanceDataPersistence.SaveLevelAvancementFunction(); //save this value in json format extension. 
+            CallLoadingFunctionAdvertisement();
+
+        }
+        else if ( nameOftheCurrentScene == nameSeventhLevelScene) //if the scene is level7
+        {
+            valueTimeForCountdown = 19.00f; //set the start value of the timer to 7 minutes.
+            levelNumber = 7;
+            DataPersistence.instanceDataPersistence.levelAvancement = 7;
+            DataPersistence.instanceDataPersistence.SaveLevelAvancementFunction(); //save this value in json format extension. 
+            CallLoadingFunctionAdvertisement();
+        }    
+
     }
     private void Update()
     {

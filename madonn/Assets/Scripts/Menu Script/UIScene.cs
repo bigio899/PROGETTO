@@ -55,12 +55,12 @@ public class UIScene : MonoBehaviour
         }
         else if ((DataPersistence.instanceDataPersistence.levelAvancement > 1) && (audioSoruceBackgroundMusic.activeInHierarchy == true))
         {
-            if (DataPersistence.instanceDataPersistence.levelAvancement != 5)
+            if (DataPersistence.instanceDataPersistence.levelAvancement != 8)
             {
                 resumeButton.interactable = true;
                 textNewRelease.gameObject.SetActive(false);
             }
-            else if (DataPersistence.instanceDataPersistence.levelAvancement == 5)
+            else if (DataPersistence.instanceDataPersistence.levelAvancement == 8)
             {
                 resumeButton.interactable = false;
                 textNewRelease.gameObject.SetActive(true);

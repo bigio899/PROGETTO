@@ -19,6 +19,8 @@ TagManager:
   - Elettricity
   - EndLevel2Passingtransition
   - Hole
+  - Fire
+  - SeniorMan
   layers:
   - Default
   - TransparentFX

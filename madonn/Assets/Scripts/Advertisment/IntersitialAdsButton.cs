@@ -78,7 +78,6 @@ public class IntersitialAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnity
             }
             if (ausiliarMenu == 2)
             {
-                Debug.Log("Ausiliar Bug Advise.");
                 SceneManager.LoadScene(DataPersistence.instanceDataPersistence.levelAvancement);
             }
             backMenu = GameObject.Find("backMenuVerifier");

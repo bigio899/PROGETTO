@@ -11,7 +11,7 @@ public class GrabbingObject : MonoBehaviour
     //ausiliar GameObject
     [SerializeField] private GameObject counterClickerButtonAusiliarVar; //audsiliar gameobject used for the counter of click of the clickerbutton. 
     [SerializeField] private int ausiliarCoroutineVariable = 0; //change of the scene from level1 to level2.
-    
+
 
     //battery variables.
     private int numberOfActualBatteries = 0; //variable that is used to have the count of the actual batteries. 
@@ -91,12 +91,17 @@ public class GrabbingObject : MonoBehaviour
     private bool hasOpenedElettricity = false;
 
     //end video first release(1th May 2023)
-    [SerializeField] private GameObject endFirstReleaseVideo;
-    [SerializeField] private GameObject endFirstReleaseVideoPlayer;
     private bool ausiliarHole = false;
     private bool ausiliarHole2 = false;
 
     private bool ausiliarEndLevel4SaveAvancementFunction = false;
+
+    //level5 variables
+    private bool hasTheParchment = false; //variable where's allocated the information about the grabbing or not of the parchment.
+    private bool ausiliarCollisionWithOldMan = false; //variable that inform the script that the player has collided the first time.
+    [SerializeField] private GameObject textAdviseSeniorManDoesntHaveTheParchment; //gameobject where's allocated the text who inform the player that doesn't have the parchment yet.
+    [SerializeField] private GameObject textAdviseSeniorManHasntTheParchmentSecondCollision; //gameobject where's allocated the text who inform the player that hasm't the parchment from the second collision and after.
+    private bool ausiliarOneTimeCalledCollision =false;
     // Start function is called before the first frame update.(MAIN)
     private void Start()
     {
@@ -123,23 +128,6 @@ public class GrabbingObject : MonoBehaviour
                 bunkerSoundEffect.gameObject.SetActive(false); //disactive the sound of the bunker's opening.
                 StartCoroutine(JumpScareLevel1()); //start coroutine that set the active status of the jumpscare.
             }
-        }
-        //if the player is on level4, he finds the hole and he finished to watch the "EndLevelVideo"
-        else if ((nameOftheCurrentScene == "Level4") && (ausiliarHole2 == false) && (ausiliarHole == true) && (!endFirstReleaseVideoPlayer.GetComponent<VideoPlayer>().isPlaying ))
-        {
-            if (ausiliarEndLevel4SaveAvancementFunction == false) // repeat the saving only one time. 
-            {
-                DataPersistence.instanceDataPersistence.levelAvancement = 5;
-                DataPersistence.instanceDataPersistence.SaveLevelAvancementFunction();
-            }
-
-            Debug.Log("The end of the first release level is called");
-            endFirstReleaseVideo.gameObject.SetActive(false); // disactive the end level video.
-            endLevelGO.gameObject.SetActive(true); // active the end level menu
-            levelPassedTextAdvise.gameObject.SetActive(true);
-            GameObject.Find("EndLevelButton").GetComponent<Button>().interactable = false; // the button nextlevel isn't interactable for the moment because the level5 isn't released  yet.
-            ausiliarHole2 = true; //ausiliar hole1 true value.
-            ausiliarHole = false; //ausiliarhole2 false value
         }
 
         //condition that active the jumpscare sound.
@@ -558,21 +546,14 @@ public class GrabbingObject : MonoBehaviour
         //if the player triggers with the hole(ENDLEVEL4)
         if((other.gameObject.CompareTag("Hole")))
         {
-            endFirstReleaseVideo.gameObject.SetActive(true);
+            levelPassedTextAdvise.gameObject.SetActive(true); //level passed advise text.
             textAndButtons.gameObject.SetActive(false); // disactive the buttons(invisible).
+            endLevelGO.gameObject.SetActive(true); //actove the menu for change the level.
             ausiliarGO1Look.gameObject.SetActive(acceptedTransition); //block of the movement input from the player.
             ausiliarGO2Move.gameObject.SetActive(acceptedTransition); //block of the looking visual input from the player.
             ausiliarGO03TimerStop.gameObject.SetActive(acceptedTransition); //block of the timer value.
-            other.gameObject.tag = ("Untagged");
-            StartCoroutine(HoleCoroutineEndFirstRelease());
-        }
-    }
 
-    //Coroutine for do the start of the endlevel video(with the ausiliarhole variable setted to true). 
-    private IEnumerator HoleCoroutineEndFirstRelease()
-    {
-        yield return new WaitForSeconds(6.0f);
-        ausiliarHole = true;
+        }
     }
 
     //-----------------------------------
@@ -582,7 +563,41 @@ public class GrabbingObject : MonoBehaviour
     //level5 triggerer active function.
     private void Level5FunctionTriggerer(Collider other)
     {
+        if (ausiliarOneTimeCalledCollision == false)
+        {
+            ausiliarOneTimeCalledCollision = true;
+            if (other.gameObject.CompareTag("SeniorMan")) // if the player is near the old man and trigger him
+            {
+                if (hasTheParchment == false) //if the player doesn't have the parchment and collides the first time
+                {
+                    if (ausiliarCollisionWithOldMan == false) //if the collision happens the first time
+                    {
+                        textAdviseSeniorManDoesntHaveTheParchment.gameObject.SetActive(true); //activing the visualization of the text. 
+                        StartCoroutine(SeniorManAdvice()); //time of viewing the text advice that the player doesn't have the parchment .
+                        ausiliarCollisionWithOldMan = true;
+                    }
+                    else if (ausiliarCollisionWithOldMan == true) //else if the collision happens the second and after times
+                    {
+                        textAdviseSeniorManHasntTheParchmentSecondCollision.gameObject.SetActive(true); //activing the visualization of the text. 
+                        StartCoroutine(SeniorManAdvice()); //time of viewing the text advice that the player has the parchment .
+                    }
+                }
+            }
+        }
+    }
 
+    private IEnumerator SeniorManAdvice()
+    {
+        yield return new WaitForSeconds(6.5f);
+        ausiliarOneTimeCalledCollision = false;
+        if ((hasTheParchment == false) && (ausiliarCollisionWithOldMan == false))
+        {
+            textAdviseSeniorManDoesntHaveTheParchment.gameObject.SetActive(false);
+        }
+        else if ((hasTheParchment == false) && (ausiliarCollisionWithOldMan == true))
+        {
+            textAdviseSeniorManHasntTheParchmentSecondCollision.gameObject.SetActive(false);
+        }
     }
 
     //------------------------------------

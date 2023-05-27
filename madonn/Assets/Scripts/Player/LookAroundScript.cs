@@ -92,7 +92,8 @@ public class LookAroundScript : MonoBehaviour
 
     public void SensitivityValueChanged()
     {
+        touchSensitivity = 0.4f;
         sensibilityValueChangedByInput = GameObject.Find("Slider").GetComponent<Slider>().value;
-        touchSensitivity *= sensibilityValueChangedByInput;
+        touchSensitivity *=  sensibilityValueChangedByInput;
     }
 }
