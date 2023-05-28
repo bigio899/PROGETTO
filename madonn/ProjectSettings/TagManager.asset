@@ -21,6 +21,8 @@ TagManager:
   - Hole
   - Fire
   - SeniorMan
+  - EndLevel5
+  - Parchment
   layers:
   - Default
   - TransparentFX

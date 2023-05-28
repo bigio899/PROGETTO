@@ -199,6 +199,7 @@ public class GrabbingObject : MonoBehaviour
     {
         if (counterClickerButtonAusiliarVar.gameObject.activeSelf == true)
         {
+            //Level1 funciton triggerer.
             //key grab code part of the script.
             if ((other.gameObject.CompareTag("Key")))   //if the player's approaching at the key.
             {
@@ -271,6 +272,7 @@ public class GrabbingObject : MonoBehaviour
                 }
             }
 
+             //level3 funciton triggerer.
             if (other.gameObject.CompareTag("CardElevator"))
             {
                 Debug.Log("card elevator picked");
@@ -278,6 +280,15 @@ public class GrabbingObject : MonoBehaviour
                 keyGrabbedTextAdvise.gameObject.SetActive(true);
                 StartCoroutine(TimeOfViewingKeyText());
                 other.gameObject.SetActive(false);
+            }
+
+            //level5 function triggerer. 
+            if (other.gameObject.CompareTag("Parchment"))
+            {
+                hasTheParchment = true; //there's the parchment in the inventory information. 
+                other.gameObject.SetActive(false);
+                keyIconImage.gameObject.SetActive(true); //the icon of the parchment is actived.
+                keyGrabbedTextAdvise.gameObject.SetActive(true); //the player is informed about the grab of the parchment.
             }
 
             counterClickerButtonAusiliarVar.gameObject.SetActive(false);
@@ -297,20 +308,23 @@ public class GrabbingObject : MonoBehaviour
         }
         else if(nameOftheCurrentScene == "level3") //if the scene is on the third level
         {
-            Debug.Log("Level3 call.");
             Level3FunctionTriggerer(other); //call the function triggerer of the third level.
         }
-        else if (nameOftheCurrentScene == "Level4")
+        else if (nameOftheCurrentScene == "Level4") //if the scene is on the fourth level
         {
-            Level4FunctionTriggerer(other);
+            Level4FunctionTriggerer(other); //call the function triggerer of the fourth level.
         }     
-        else if (nameOftheCurrentScene == "Level5")
+        else if (nameOftheCurrentScene == "Level5") //if the scene is on the fifth level
         {
-            Level5FunctionTriggerer(other);
+            Level5FunctionTriggerer(other); //call the function triggerer of the fifth level.
         }
-        else if (nameOftheCurrentScene == "Level6")
+        else if (nameOftheCurrentScene == "Level6") //if the scene is on the sixth level
         {
-            Level6FunctionTriggerer(other);
+            Level6FunctionTriggerer(other); //call the function triggerer of the sixth level.
+        }
+        else if (nameOftheCurrentScene == "Level7") //if the scene is on the seventh level
+        {
+            Level7FunctionTriggerer(other); //call the function triggerer of the seventh level.
         }
     }
     //function that verify if the Drawer must be opened or closed,and then do the action(of opening or closing).
@@ -584,6 +598,17 @@ public class GrabbingObject : MonoBehaviour
             }
             ausiliarOneTimeCalledCollision = true;
         }
+
+        if ((other.gameObject.CompareTag("EndLevel5")) && (hasTheParchment == true))
+        {
+            levelPassedTextAdvise.gameObject.SetActive(true); //level passed advise text.
+            textAndButtons.gameObject.SetActive(false); // disactive the buttons(invisible).
+            endLevelGO.gameObject.SetActive(true); //actove the menu for change the level.
+            ausiliarGO1Look.gameObject.SetActive(acceptedTransition); //block of the movement input from the player.
+            ausiliarGO2Move.gameObject.SetActive(acceptedTransition); //block of the looking visual input from the player.
+            ausiliarGO03TimerStop.gameObject.SetActive(acceptedTransition); //block of the timer value.
+        }
+
     }
 
     private IEnumerator SeniorManAdvice()
@@ -611,4 +636,15 @@ public class GrabbingObject : MonoBehaviour
     {
 
     }
+
+    //------------------------------------
+    //LEVEL7
+    //+
+ 
+    //level7 triggerer active function.
+    private void Level7FunctionTriggerer(Collider other)
+    {
+
+    }
+
 }
