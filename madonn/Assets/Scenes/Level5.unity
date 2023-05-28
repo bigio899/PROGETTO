@@ -329,7 +329,7 @@ PrefabInstance:
     - target: {fileID: 5312242988881315822, guid: 5b82fc0ee2ed2874091088c74ab52d22, type: 3}
       propertyPath: textAdviseSeniorManDoesntHaveTheParchment
       value: 
-      objectReference: {fileID: 1633858978}
+      objectReference: {fileID: 410784600}
     - target: {fileID: 5312242988881315822, guid: 5b82fc0ee2ed2874091088c74ab52d22, type: 3}
       propertyPath: DrawersOpeningAndClosingAnimator.Array.data[0]
       value: 
@@ -349,7 +349,7 @@ PrefabInstance:
     - target: {fileID: 5312242988881315822, guid: 5b82fc0ee2ed2874091088c74ab52d22, type: 3}
       propertyPath: textAdviseSeniorManHasntTheParchmentSecondCollision
       value: 
-      objectReference: {fileID: 410784600}
+      objectReference: {fileID: 1633858978}
     - target: {fileID: 5312962429486523766, guid: 5b82fc0ee2ed2874091088c74ab52d22, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -768,7 +768,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: e02c382ae8a20714a8101723025d98be, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e02c382ae8a20714a8101723025d98be, type: 3}
       propertyPath: m_LocalScale.x
@@ -1282,7 +1282,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 62bef4b82aa733e4d94a051c27818d71, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 62bef4b82aa733e4d94a051c27818d71, type: 3}
       propertyPath: m_LocalScale.x
@@ -2233,7 +2233,7 @@ GameObject:
   m_Component:
   - component: {fileID: 410784601}
   m_Layer: 5
-  m_Name: OtherCollisionsOldManText
+  m_Name: FirstCollisionOldManText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5236,7 +5236,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a1306e9e7eaa4b74396efcdad962d239, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a1306e9e7eaa4b74396efcdad962d239, type: 3}
       propertyPath: m_LocalScale.x
@@ -5603,7 +5603,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 092ee8c4b10273e4592ff4d262a258ed, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 092ee8c4b10273e4592ff4d262a258ed, type: 3}
       propertyPath: m_LocalScale.x
@@ -6876,7 +6876,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 458676, guid: 18faec2a14493684d905501076799765, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 458676, guid: 18faec2a14493684d905501076799765, type: 3}
       propertyPath: m_LocalScale.x
@@ -8007,7 +8007,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1633858979}
   m_Layer: 5
-  m_Name: FirstCollisionOldManText
+  m_Name: OtherCollisionsOldManText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8195,7 +8195,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 0acaa1b2e8ba6c949b9c781900595686, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0acaa1b2e8ba6c949b9c781900595686, type: 3}
       propertyPath: m_LocalScale.x
@@ -8630,7 +8630,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 20f8d87b4de96d14b8bbd3eec2ce2f3d, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 20f8d87b4de96d14b8bbd3eec2ce2f3d, type: 3}
       propertyPath: m_LocalScale.x
@@ -30019,7 +30019,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5889286114736817370}
   - component: {fileID: 5889286114730384764}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: CampFireLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30037,7 +30037,7 @@ GameObject:
   - component: {fileID: 5889286114736803998}
   - component: {fileID: 5889286114722652132}
   - component: {fileID: 5889286114722676906}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: SparksUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30055,7 +30055,7 @@ GameObject:
   - component: {fileID: 5889286114736772662}
   - component: {fileID: 5889286114722674452}
   - component: {fileID: 5889286114722801694}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30073,7 +30073,7 @@ GameObject:
   - component: {fileID: 5889286114736819570}
   - component: {fileID: 5889286114722585442}
   - component: {fileID: 5889286114722762138}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: SparksDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30094,7 +30094,7 @@ GameObject:
   - component: {fileID: 5889286114730941196}
   - component: {fileID: 5889286114731015104}
   - component: {fileID: 5889286114744630108}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: CampFire
   m_TagString: Fire
   m_Icon: {fileID: 0}
@@ -30112,7 +30112,7 @@ GameObject:
   - component: {fileID: 5889286114736772676}
   - component: {fileID: 5889286114722652152}
   - component: {fileID: 5889286114722700508}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}

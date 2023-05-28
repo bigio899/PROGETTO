@@ -107,7 +107,7 @@ public class GameManager1 : MonoBehaviour
         }
         else if (nameOftheCurrentScene == nameSixthLevelScene) //if the scene is level6
         {
-            valueTimeForCountdown = 29.00f; //set the start value of the timer to 7 minutes.
+            valueTimeForCountdown = 429.00f; //set the start value of the timer to 7 minutes.
             levelNumber = 6;
             DataPersistence.instanceDataPersistence.levelAvancement = 6;
             DataPersistence.instanceDataPersistence.SaveLevelAvancementFunction(); //save this value in json format extension. 
@@ -116,7 +116,7 @@ public class GameManager1 : MonoBehaviour
         }
         else if ( nameOftheCurrentScene == nameSeventhLevelScene) //if the scene is level7
         {
-            valueTimeForCountdown = 19.00f; //set the start value of the timer to 7 minutes.
+            valueTimeForCountdown = 419.00f; //set the start value of the timer to 7 minutes.
             levelNumber = 7;
             DataPersistence.instanceDataPersistence.levelAvancement = 7;
             DataPersistence.instanceDataPersistence.SaveLevelAvancementFunction(); //save this value in json format extension. 
@@ -124,8 +124,11 @@ public class GameManager1 : MonoBehaviour
         }    
 
     }
+
+    //Update is called once a frame. +
     private void Update()
     {
+        //if the player has watched the rewarded ad, he has more time for finish the level(89 seconds).
         if (ausiliarAddingTimeGameManager.gameObject.activeSelf == false) //ausiliar gameobject used for add time to the gamemanager.
         {
             CallLoadingFunctionAdvertisement();
@@ -139,8 +142,8 @@ public class GameManager1 : MonoBehaviour
         {
             ausiliarSecondFrameVideo = true;
         }
-        //condition that verify if the introduction's video is ended.If the value is true,all the GameButtons of the menu will back active, and the intro will disabilited.
 
+        //condition that verify if the introduction's video is ended.If the value is true,all the GameButtons of the menu will back active, and the intro will disabilited.
         if ((ausiliarSecondFrameVideo == true) && (!introductionChapterVideosource.isPlaying) && (ausiliarIntroductionChapters != true)) //if the video has finished the reproduction
         {
             Debug.Log("The video is ended successfully");
@@ -204,6 +207,7 @@ public class GameManager1 : MonoBehaviour
         {
             countdownTextUI.color = Color.white; // set the color to white
 
+            //this conditions show on screen the tips that help the player to finish the levels
             if (levelNumber == 1) //TIPS LEVEL1
             {
                 //Visualizing all the tips
@@ -331,7 +335,7 @@ public class GameManager1 : MonoBehaviour
     private IEnumerator VisualizingTipsCoroutine(GameObject tip)
     {
         yield return new WaitForSeconds(15.0f);
-        tip.gameObject.SetActive(false);
+        tip.gameObject.SetActive(false); //the tip text is disabled and not visible at the player.
     }
 
     //Function called when the player stop the game and open the pause menu.

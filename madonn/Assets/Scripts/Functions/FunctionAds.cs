@@ -10,7 +10,6 @@ public class FunctionAds : MonoBehaviour
     public GameObject endLevel;
     public GameObject gamebuttonText;
     public GameObject textAdvisePassedLevel;
-    public Image keyIconImage; //variable where's comtained the icon of the key.
     public GameObject clickerButton;
     public GameObject backMenuFromPlaying;
     public GameObject timer;
@@ -29,7 +28,6 @@ public class FunctionAds : MonoBehaviour
         clickerButton.gameObject.SetActive(false);
         timer.gameObject.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
         backMenuFromPlaying.gameObject.SetActive(false);
-        keyIconImage.gameObject.SetActive(false);
         endLevel.gameObject.SetActive(false);
         gamebuttonText.gameObject.SetActive(false);
         textAdvisePassedLevel.gameObject.SetActive(false);
@@ -42,7 +40,6 @@ public class FunctionAds : MonoBehaviour
         clickerButton.gameObject.SetActive(false);
         timer.gameObject.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
         backMenuFromPlaying.gameObject.SetActive(false);
-        keyIconImage.gameObject.SetActive(false);
         endLevel.gameObject.SetActive(false);
         gamebuttonText.gameObject.SetActive(false);
         textAdvisePassedLevel.gameObject.SetActive(false);

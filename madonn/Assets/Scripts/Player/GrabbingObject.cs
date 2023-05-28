@@ -136,11 +136,11 @@ public class GrabbingObject : MonoBehaviour
             jumpScareSoundEffect.gameObject.SetActive(true);
         }
 
-        if (isKeyGrabbedToThePlayer == true)
+        if (isKeyGrabbedToThePlayer == true && (nameOftheCurrentScene != "Level5") && (nameOftheCurrentScene != "Level6") && (nameOftheCurrentScene != "Level7"))
         {
             keyIconImage.gameObject.SetActive(acceptedTransition); //the key icon is sected to active.
         }
-        else if ((isKeyGrabbedToThePlayer == false) && (nameOftheCurrentScene != "Level5"))
+        else if ((isKeyGrabbedToThePlayer == false) && (nameOftheCurrentScene != "Level5") && (nameOftheCurrentScene != "Level6") && (nameOftheCurrentScene != "Level7"))
         {
             keyIconImage.gameObject.SetActive(rejectedTransition); //the key icon is sected to disactive.
         }
@@ -565,16 +565,15 @@ public class GrabbingObject : MonoBehaviour
     {
         if (ausiliarOneTimeCalledCollision == false)
         {
-            ausiliarOneTimeCalledCollision = true;
             if (other.gameObject.CompareTag("SeniorMan")) // if the player is near the old man and trigger him
             {
+                Debug.Log("SeniorMan is collided with the view of the player.");
                 if (hasTheParchment == false) //if the player doesn't have the parchment and collides the first time
                 {
                     if (ausiliarCollisionWithOldMan == false) //if the collision happens the first time
                     {
                         textAdviseSeniorManDoesntHaveTheParchment.gameObject.SetActive(true); //activing the visualization of the text. 
                         StartCoroutine(SeniorManAdvice()); //time of viewing the text advice that the player doesn't have the parchment .
-                        ausiliarCollisionWithOldMan = true;
                     }
                     else if (ausiliarCollisionWithOldMan == true) //else if the collision happens the second and after times
                     {
@@ -583,20 +582,23 @@ public class GrabbingObject : MonoBehaviour
                     }
                 }
             }
+            ausiliarOneTimeCalledCollision = true;
         }
     }
 
     private IEnumerator SeniorManAdvice()
     {
         yield return new WaitForSeconds(6.5f);
-        ausiliarOneTimeCalledCollision = false;
         if ((hasTheParchment == false) && (ausiliarCollisionWithOldMan == false))
         {
             textAdviseSeniorManDoesntHaveTheParchment.gameObject.SetActive(false);
+            ausiliarCollisionWithOldMan = true;
+            ausiliarOneTimeCalledCollision = false;
         }
         else if ((hasTheParchment == false) && (ausiliarCollisionWithOldMan == true))
         {
             textAdviseSeniorManHasntTheParchmentSecondCollision.gameObject.SetActive(false);
+            ausiliarOneTimeCalledCollision = false;
         }
     }
 
